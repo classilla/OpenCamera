@@ -1,0 +1,55 @@
+Compiling
+=========
+
+Open Camera is compiled using Android Studio. (Versions 1.34 or earlier were compiled using Eclipse.)
+
+Source Control
+==============
+
+The Git repository is available at https://sourceforge.net/p/opencamera/code/ . Note that I work with the auto crlf turned off (otherwise it converts all the Linux line endings into Windows format). If you want to work on the source (especially if you want to contribute), please check out the latest version from the repository. If you are forking to build a separate application, again the Git repository has the latest code, but taking a source archive corresponding to a released version of Open Camera ( https://sourceforge.net/projects/opencamera/files/ ) may be more stable.
+
+General advice
+==============
+
+If you want to build an application using the Open Camera source code, there are various levels you might like to do this at.
+
+CameraController: The classes in the CameraController/ folder encapsulate the Android camera API (both the original, and the Camera2 API introduced in Android 5). So one level is to use these classes, to build a new application. These classes are still fairly low level (and you'll still have to do work such as setting up things like the camera preview), but avoid having to deal with Android's camera API directly. They combine the 2 camera APIs under a single interface (though some features are Camera2 specific). They also encapsulate code that covers driver specific behaviours (or driver bug workarounds!), to hide this from the outside world.
+
+Preview: At a higher level, you might want to take the classes in Preview/ as well as CameraController/. Note the Preview class is a bit of a misnomer - as well as the camera preview, it also includes much of the functionality required to operate the camera. This level would provide you with a camera, but still leave you to define all the higher level parts of the application, such as user-interface, preferences, image processing and saving. As well as controlling the Preview by calling its methods, an instance of ApplicationInterface must be supplied, to allow the Preview to communicate to the application. It is recommended to subclass BasicApplicationInterface, which provides a dummy default implementation of many of the methods. (As an alternative, you may prefer to start with Open Camera's MyApplicationInterface as a sample, and modify it to your needs.)
+
+Application: You might prefer to use Open Camera in its entirety, as an Activity within your application (or possibly converting the MainActivity to a fragment). Consider whether Open Camera's Settings should be unified with the settings in your application. Accesses to SharedPreferences use the PreferencesKeys class to find the keys.
+
+Android inspection warnings/errors
+==================================
+
+The file .idea/inspectionProfiles/Project_Default.xml contains settings for Android inpsections (see Editor/Inspections). The following have been disabled:
+
+* AndroidLintUnusedResources - seems to give false information on res/ images, as well as complaining about renderscript files in build folders.
+* BooleanMethodIsAlwaysInverted - Generates too many useless warnings.
+* CharsetObjectCanBeUsed - This seems fundamentally broken, as it'll recommend using StandardCharsets, and then give an error that that's not available before API level 19! E.g., see Charset.forName("UTF-8") in SettingsManager.saveSettings(). Strangely though it doesn't warn about the API level if we replace it in ImageSaver.saveImageNow().
+* CommentedOutCode - Commented out code is usually intentional!
+* ConstantConditions - Unfortunately this seems broken when calling an Android SDK function where only a stub source is available, such that the inspection incorrectly things an exception is thrown. E.g., see calls to TouchUtils.clickView() in MainActivityTest, this inspection thinks that e.g. "i<8" in for loops is always true.
+* EmptyMethod - Sometimes can be useful to explicitly have a subclassed empty method, to show I've intentionally left it empty rather than forgotten to consider it.
+* EmptyStatementBody - These may be intentional.
+* PointlessBooleanExpression - This complains too much about controlling codepaths with final boolean flags (e.g., "if( debug_switch && blah )").
+* SameParameterValue - A parameter may have been provided for future proofing even if callers currently only use one value.
+* TrivialIf - This suggests replacing clear if statements with shorter but more convoluted boolean expressions.
+* UnusedReturnValue - In some cases a function may return something even if not currently used, either for future proofing, or we used it in the past (and might use again in the future). Whilst a caller not checking the return can be an error, this check wouldn't pick that up so long as at least one caller checked the return.
+
+The following are enabled, but with modifications:
+
+* UnnecessaryLocalVariable - m_ignoreImmediatelyReturnedVariables is true.
+* unused - parameter="protected", REPORT_PARAMETER_FOR_PUBLIC_METHODS is false (otherwise this complaints about parameters in overridden methods being unused);  method="protected" (in some cases public unused methods may be added for future proofing).
+
+Licence
+=======
+
+This source is released under the GPL v3 or later. Please see the licence in gpl-3.0.txt (or https://www.gnu.org/copyleft/gpl.html ). If you would like to use the Open Camera in a closed source app, please contact me for a closed source commercial licence, with details on your company and app.
+
+Please contact me if you have suggestions, bug fixes, or whatever: mark DOT harman DOT apps AT gmail DOT com .
+
+Homepage: http://opencamera.org.uk/
+
+Google Play download: https://play.google.com/store/apps/details?id=net.sourceforge.opencamera
+
+Mark Harman 16 August 2021

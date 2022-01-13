@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Open Camera Device Compatibility
+</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- viewport recommended by Google for mobile design, also required for Google's mobile-friendly test at https://www.google.co.uk/webmasters/tools/mobile-friendly/ -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="stylesheet.css" type="text/css">
+
+<!-- EU cookie law, needed for analytics and adsense -->
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {
+        "message":"This website uses cookies, including for Google Analytics and to display ads",
+        "dismiss":"Got it!",
+        "learnMore":"More info",
+        "link":"privacy_oc.html",
+        "theme":"dark-bottom"};
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->
+
+<!-- Google Analytics -->
+<!-- anonymize_ip is set: unclear if this is needed for EU GDPR, but just in case -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-38364448-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-38364448-5', { 'anonymize_ip': true });
+</script>
+
+</head>
+
+<body>
+
+<a href="index.html"><img align="left" src="ic_launcher.png" alt="Open Camera icon" title="Open Camera icon" width="72" height="72"></a>
+<hr>
+<center><h2>Open Camera Device Compatibility</h2></center>
+<hr>
+
+<p>&lt; <small><a href="index.html">Main Page.</a></small></p>
+
+<p>This page provides some guidance on possible issues of Open Camera on various Android&trade; devices. Please note the following:</p>
+<ul>
+        <li>Sometimes behaviour can be affected by things like operating system version or can differ between variants of the same
+                model. Behaviour may also change over time depending on different versions of Open Camera, and different
+                versions of device operating system. So something listed here isn't a guarantee of that behaviour on a
+                particular model.</li>
+        <li>This information is provided "as is" with no warranties - if you need to be certain of how Open Camera works on a
+                particular device, ultimately you'll have to test it yourself.</li>
+</ul>
+
+<h2>General notes</h2>
+
+<p>If you're just interested in taking photos with non-advanced features (without using "Camera2 API"), then most things
+        should work on most devices, as far as I can tell. I do occasionally get bug reports of things which seem to be device
+        specific, but not enough to draw conclusions about things not working on particular devices. The most commonly reported
+        issues seems to be:</p>
+<ul>
+        <li>Video is one of the most difficult things working across different Android devices - on some devices recording comes out
+                corrupted. In some cases this is only on some resolutions, or it may be
+                all.</li>
+        <li>If you're wanting to save to external SD cards, you'll need to follow the advice at
+                <a href="help.html#faq">the FAQ</a> . Note that in some cases, it seems that SD cards
+                can't be selected even when using the Storage Access Framework option - this is a device issue, and
+                something out of my control. If you're wanting to have lots
+                of storage for taking photos or videos, it's probably better to make sure you get a device with plenty of
+                internal storage (internal storage is faster anyway, so means faster taking of photos, and more reliable high
+                resolution video recording).</li>
+</ul>
+
+<p>If you're interested in enabling Camera2 support for advanced features (manual focus, manual exposure, expo bracketing, HDR),
+        be aware that some devices have poor support for Camera2 (even if they support the API, the
+        implementations seem to have problems). Thankfully things seem to be improving on that front with newer
+        devices. Please read the details below on what I know about different devices.</p>
+
+<p>Also note that just because a manufacturer advertises a particular camera feature, it doesn't mean that Open Camera can use
+        it. Unfortunately some manufacturers limit some features to the "stock" camera application, and don't make it available
+        through to third party cameras. This tends to be more advanced features - 4K video, high photo resolutions, high frame
+        rate video, RAW.</p>
+
+<h2>Device specific notes</h2>
+
+<h3>Google Nexuses/Pixels</h3>
+
+<p>In general, Google Nexuses have worked well for Open Camera. Firstly because Google provide good support for their own
+        Android camera API, both old and Camera2 (as you'd hope!) - and they use it for their own Google camera. Secondly because
+        I've owned several Nexuses (Galaxy Nexus, Nexus 7, Nexus 6), and so have been able to test Open Camera against them.</p>
+
+<p>Camera2 on the Nexus 6 works well (there are some minor issues, e.g., manual exposure doesn't work well when recording
+        video). It's hard to be sure about other Nexuses though.</p>
+
+<p>In theory all this should apply to the Pixels, but I haven't been able to test - though from what people tell me, things
+seem to work including Camera2 features. Open Camera also supports Google's HDR+ mode on the Pixels with Pixel Visual Core.</p>
+
+<p>Color effects don't work on the Nexus 7.</p>
+
+<h3>Huawei</h3>
+
+<p>I've had reports of expo bracketing and HDR in Camera2 mode not working properly on some Huawei devices
+        (Huawei P8 lite 2017, P9). See <a href="https://sourceforge.net/p/opencamera/tickets/368/">here</a> for details.</p>
+
+<p>I've also had reports of RAW/DNG images being saved with red/blue swapped. See
+<a href="https://sourceforge.net/p/opencamera/tickets/422/">here</a> for details.</p>
+
+<h3>Lenovo Vibe S1</h3>
+
+<p>A special prize goes to this device - several people have told me they can't even install Open Camera (Google Play
+        gives error 504) on at least some versions of this device. This appears to be due to a pre-installed app "Stereo Verify"
+        that clashes with Open Camera's package name (net.sourceforge.opencamera), which prevents installation of Open Camera.
+        Also see
+        <a href="http://forum.xda-developers.com/vibe-p1/help/stereo-verify-t3454811">here</a> for further discussion.</p>
+
+<h3>Nokia</h3>
+
+<p>I've tested Open Camera with the Nokia 8. Everything seems to work as far as I can tell, including Camera2 API with full
+manual controls, RAW and 120fps video.</p>
+
+<h3>OnePlus</h3>
+
+<h4>OnePlus One</h4>
+
+<p>A reported problem for third party camera applications (including Open Camera) is photos coming out with a "split exposure"
+        effect where one half is brighter than the other - e.g., see
+        <a href="https://forums.oneplus.net/threads/half-split-photos-workaround-read-this.253160/">here</a>.</p>
+
+<h4>OnePlus 3T</h4>
+
+<p>This is a device I own, so has the advantage that I've been able to test with it.</p>
+
+<p>Mostly things work fine, but Camera2 API has some issues:</p>
+<ul>
+        <li>Manual exposure sometimes fails (the preview corrupts or the device may freeze for a few moments), this also
+                includes HDR.</li>
+        <li>Low light scenes show the wrong ISO and shutter speed, both on-screen and in the saved Exif info (although the
+                photos themselves still come out okay); also a knock on effect of this bug is that HDR and expo bracketing
+                don't work in low light. Manual ISO also doesn't work above 799 (the images still come out with ISO at 799).</li>
+        <li>High speed (120 fps) frame rate doesn't work.</li>
+</ul>
+
+<p>See <a href="https://forums.oneplus.net/threads/camera2-api-bugs-for-3rd-party-camera-apps.506100">this thread</a> for more
+        details.</p>
+
+<h4>OnePlus 5</h4>
+
+<p>This seems to have the same problems with Camera2 API as the OnePlus 3T (see above). Issues with RAW images have been
+        reported for third party camera applications - see
+        <a href="https://sourceforge.net/p/opencamera/discussion/general/thread/0a9b5bef/">here</a>,
+        <a href="https://forums.oneplus.net/threads/pink-tint-on-dng.562049/">here</a> and
+        <a href="https://forums.oneplus.net/threads/raw-camera-purple-halo.565588/">here</a>. As of August 2017,
+        <a href="https://forums.oneplus.net/threads/pink-cast-on-dng-files-when-shooting-with-other-apps.580035/">this
+                seems to have been fixed</a>.
+        But as of December 2017, there seem to be
+        <a href="https://forums.oneplus.net/threads/raw-pictures-with-third-party-camera-app-are-greenish.727594/">additional
+                problems with RAW on Android 8.</a>
+</p>
+
+<h3>Samsung</h3>
+
+<p>I have tested Open Camera on a Samsung Galaxy S10e (Exynos SM-G970F). Mostly things work, including with Camera2
+        API. Known issues are:</p>
+<ul>
+        <li>Slow motion and high speed frame rate video doesn't work (see below for more details).</li>
+        <li>The "Image quality" setting has no effect for JPEGs (unless post-processing options such as auto-level or
+        photo stamp are applied). This has also been reported for other Samsung devices; I also have the same
+        issue with other third party camera applications on my S10e. See
+        <a href="https://sourceforge.net/p/opencamera/discussion/general/thread/1abb56eb/">this thread</a>
+        for details.</li>
+</ul>
+<p>Both rear physical cameras (standard and ultra wide) are available to Open Camera; also the two modes for the front camera
+        ("cropped" and "wide") are available to Open Camera. Note however that at least some Samsung devices do not expose all
+        of their cameras for third party applications.<p>
+
+<p>More generally I have occasionally tested on various Samsung devices using their remote test labs - although useful, this is limited
+        compared to owning a real device (especially when the test labs are dark!)</p>
+
+<p>A few Samsung devices have shown problems with corrupted video recording with Open Camera, though this seems to be rare (and doesn't
+        seem to be consistent enough to name any particular device - my S10e seems fine).</p>
+
+<p>I've had reports of the audio being out of sync with video on the Galaxy S7 and S8 when in Camera2 API mode.</p>
+
+<p>Older Samsung devices (e.g., Galaxy S5) didn't have 4K video recording available for third party camera applications. In some
+        cases it could be enabled with the "Force 4K" option, but this only works on some devices (in some cases whether it works
+        depends on which variant of a device). As of the Galaxy S10e at least, 4K video is available.</p>
+
+<p>Some Samsung devices do not have any "scene modes" (in some cases this can depend on even which variant of a device is
+        used).</p>
+
+<!--<p>I've had reports of picture quality being poor on Camera2 API the Galaxy S7 and S7 Edge, though improvements were made in
+        v1.42.1 onwards of Open Camera. See
+        <a href="https://sourceforge.net/p/opencamera/discussion/general/thread/48bd836b/">here</a> for details.</p>
+-->
+
+<p>At least some Samsung devices don't seem to have support for high speed frame rates for video for third party camera applications.
+        Filmic have documented issues for the
+        <a href="https://filmicpro.helpscoutdocs.com/article/41-samsung-s9-and-s9-filmic-pro-v6-compatibility-guide">S9 and S9+</a>, and
+        <a href="https://filmicpro.helpscoutdocs.com/article/42-samsung-note-9-filmic-pro-v6-compatibility-guide">Note 9</a> (these articles
+        are for Filmic Pro, but the issues faced likely affect all third party camera applications, including Open Camera).</p>
+
+<p>On a related note, the Galaxy Note 4 and 5 were used with Open Camera to film
+        <a href="https://sourceforge.net/p/opencamera/blog/2015/10/cai-lan-gong---worlds-first-feature-film-shot-with-a-smartphone-at-4k-resolution/">the
+                world's first 4K feature film shot on a phone</a>.</p>
+
+<h3>Sony Xperia</h3>
+
+<p>To enable the 23MP photo resolution, you need to set Settings/"Camera API" to "Camera2 API". Someone has reported to me this works on the
+        Sony XA1 (G3123) (Android 8), I'm not sure about older devices.</p>
+<!--<p>23MP photo resolution isn't available, the maximum seems to be 8MP. This seems to be due to
+        <a href="http://talk.sonymobile.com/t5/Xperia-Z5-Z5-Compact-Z5-Premium/Full-camera-res-in-third-party-apps/td-p/1045437/highlight/true/page/4">Sony
+                not making this available for third party camera applications</a>.</p>-->
+
+<p>Sony devices <a href="https://talk.sonymobile.com/t5/Software-Updates/Camera2-API/td-p/974742/page/122">don't seem to support
+        RAW/DNG</a> at the time of writing.</p>
+
+<p>I've had a report that manual white balance temperature doesn't work (Sony Xperia X Compact).</p>
+
+<hr>
+<p><a href="privacy_oc.html">Open Camera Privacy Policy.</a></p>
+<p>This website uses icons from third party sources, see <a href="index.html#licence">licences.</a></p>
+<p><a href="http://sourceforge.net/p/opencamera/">Open Camera on Sourceforge.</a></p>
+<hr>
+
+</body>
+</html>

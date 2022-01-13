@@ -1,0 +1,1709 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Open Camera History
+</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- viewport recommended by Google for mobile design, also required for Google's mobile-friendly test at https://www.google.co.uk/webmasters/tools/mobile-friendly/ -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="stylesheet.css" type="text/css">
+
+<!-- EU cookie law, needed for analytics and adsense -->
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {
+        "message":"This website uses cookies, including for Google Analytics and to display ads",
+        "dismiss":"Got it!",
+        "learnMore":"More info",
+        "link":"privacy_oc.html",
+        "theme":"dark-bottom"};
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->
+
+<!-- Google Analytics -->
+<!-- anonymize_ip is set: unclear if this is needed for EU GDPR, but just in case -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-38364448-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-38364448-5', { 'anonymize_ip': true });
+</script>
+
+</head>
+
+<body>
+
+<a href="index.html"><img align="left" src="ic_launcher.png" alt="Open Camera icon" title="Open Camera icon" width="72" height="72"></a>
+<hr>
+<center><h2>Open Camera History</h2></center>
+<hr>
+
+<p>&lt; <small><a href="index.html">Main Page.</a></small></p>
+
+<pre>
+Version 1.49.2 (2022/01/13)
+
+FIXED   Dialog for "Save settings" shouldn't allow multiple lines.
+FIXED   Crash for NR photo mode on some devices since version 1.49.
+UPDATED Switched to using AppCompat AppCompatActivity.
+UPDATED Photo stamp custom text now uses AppCompat libraries to support latest emoji.
+UPDATED Made appearance of info "toasts" more consistent.
+
+Version 1.49.1 (2021/09/20)
+
+FIXED   Crop guides weren't drawn correctly in portrait orientation in 1.49.
+FIXED   Diagonals grid wasn't drawn correctly in portrait orientation in 1.49.
+
+Version 1.49 (2021/09/07)
+
+FIXED   Crash when failing to save photos/videos with mediastore (Android 10+ if not using Storage
+        Access Framework).
+FIXED   Crash related to original camera API.
+FIXED   Crash when using photo stamp with auto-level when angle is zero.
+FIXED   Couldn't exit immersive mode on Android 11.
+FIXED   Behaviour where widescreen preview aspect ratios show under on-screen navigation bar wasn't
+        working properly on Android 11.
+FIXED   Manual white balance had inverted effect.
+FIXED   Video subtitles file didn't work properly when video file restarted due to max filesize.
+FIXED   Taking a photo in RAW only, then clicking on the gallery thumbnail would sometimes
+        incorrectly open an earlier non-RAW photo or video.
+FIXED   Corrected pitch and compass line lengths for portrait vs landscape orientations.
+FIXED   Single and double tap options to take photo weren't working correctly in panorama mode.
+FIXED   When using manual ISO seekbar, sometimes incorrect ISO button would be highlighted.
+UPDATED Now supports portrait and landscape system orientations, rather than being locked to
+        landscape system orientation.
+UPDATED Double tap to take photo option no longer performs a touch to focus, this now only happens
+        from a single tap.
+UPDATED Improved performance when opening camera and clicking on gallery icon (mainly relevant for
+        using Storage Access Framework with Android 10+ when save folder has large number of files).
+UPDATED Set max preview exposure time to be 1/5s instead of 1/12s, for when using manual exposure.
+UPDATED Support longer exposure time (1/5s) on some Samsung Galaxy S devices.
+UPDATED Improvements to brightness levels for Noise Reduction, DRO and HDR photo modes (images
+        coming out too dark in some cases).
+UPDATED Improvement to Noise Reduction photo mode quality (improved ability to distinguish noise
+        from ghosting effects).
+UPDATED Improvement to Noise Reduction photo mode to avoid overexposing in lower light scenes.
+UPDATED Improved choosing when to use 8 images for Noise Reduction photo mode.
+UPDATED Optimisations for DRO and NR photo modes on Samsung devices.
+UPDATED Accessibility improvement, set hints for EditTexts.
+UPDATED Now targetting Android 11. Due to changes in Android 11 this means "video subtitles" option
+        is now only available when saving with
+        Settings/More camera controls/"Storage Access Framework" enabled.
+UPDATED Updated some user interface icons.
+
+Version 1.48.3 (2020/11/20)
+
+FIXED   Possible crash for panorama if failing to crop due to poor transformations; now fails
+        gracefully.
+FIXED   Crash on EXTERNAL devices with Camera2 API that didn't support querying the view angles.
+FIXED   Photos would sometimes fail to save on some devices with Storage Access Framework, when some
+        options were enabled (options like DRO, HDR, auto-level, photostamp that require
+        post-processing; custom Exif tags like artist or copyright; or when using geotagging with
+        Camera2 API).
+FIXED   Fix for HDR scenes with both very bright and very dark regions, result would be over
+        exposed.
+FIXED   Fixed possible misalignment for HDR scenes with very bright or very dark images.
+FIXED   Corrupt videos could be left over if video failed to start.
+FIXED   Possible problem taking photos on some devices with LIMITED Camera2 API support.
+FIXED   Possible problem with default edge mode and noise reduction mode behaviours on some devices
+        with LIMITED Camera2 API support.
+FIXED   UI would become sluggish if camera or storage permission denied with "Don't ask again".
+UPDATED Now supporting "scoped storage" on Android 10+. This means storage permission is no longer
+        required on Android 10+. However this means the following changes:
+          * Saving outside of DCIM/ is no longer possible unless using the Storage Access Framework
+            option. If you had set up a custom save folder outside of DCIM/ and are on Android 10+,
+            it will be reset to the default DCIM/OpenCamera/ folder. If you want to continue saving
+            outside of DCIM/, you can enable
+            Settings/More camera controls/"Use Storage Access Framework" and choose a new folder.
+          * If using Video subtitles option, then the .SRT files will show up in gallery
+            applications, unless Settings/More camera controls/"Use Storage Access Framework" is
+            enabled.
+        Note that these changes are required due to changes being made in Android that applications
+        are required to support.
+UPDATED Use seekbar for more settings (audio control sensitivity, image quality, photo stamp font
+        size).
+UPDATED Debug XML files for panorama now saved in Android/data/net.sourceforge.opencamera/files/.
+UPDATED Camera now closed when in settings or preview otherwise in background.
+
+Version 1.48.2 (2020/07/12)
+
+FIXED   Manual focus and focus bracketing seekbars weren't being hidden when in immersive mode.
+FIXED   Video subtitles would stop before end of video on some devices when using Storage Access
+        Framework.
+UPDATED Switched to AndroidX support library.
+UPDATED Artist, Copyright exif tags option now supported for devices running Android 6 or earlier.
+UPDATED Selecting remote device type for Bluetooth remote control now calls Open Camera's
+        DeviceScanner directly; DeviceScanner activity no longer exported.
+
+Version 1.48.1 (2020/05/02)
+
+FIXED   Crash on devices with Camera2 API where camera reports no picture, video or preview
+        resolutions, instead fail to open camera gracefully instead.
+FIXED   Fix switch camera buttons behaviour if a camera with ID greater than 0 failed to open.
+FIXED   Some devices lost custom video profiles in 1.48.
+ADDED   If camera fails to open, display ID of current camera that we tried to open.
+
+Version 1.48 (2020/04/22)
+
+FIXED   Taking front camera photos with frontscreen torch was slow.
+FIXED   When using "Pause after taking photo", touching to unpause no longer
+        triggers auto focus, or taking another photo for "Touch to capture".
+FIXED   Take photo widget issue.
+FIXED   Camera specific hardware keys such as volume keys shouldn't take effect in settings etc.
+FIXED   Don't set optical image stabilization if video digital stabilization is enabled in video
+        mode.
+FIXED   Seamless video restart on maximum filesize (for Android 8+) wasn't broadcasting video files
+        except the last one, meaning they were taking longer to show up in mediastore gallery.
+FIXED   Recording video on Android 8+ could leave zero-size files if size approached the maximum
+        filesize, but a restart did not occur.
+FIXED   Problem of on-screen level angle overlapping with shutter icon when using a widescreen
+        preview aspect ratio.
+FIXED   Incorrect layout for on-screen text when using "icons along top" with wide-screen aspect
+        ratio and device held in upside-down landscape orientation.
+FIXED   Focus seekbars overlapped with histogram in widescreen aspect ratio when using "Icons along
+        top" UI placement.
+FIXED   Was incorrectly offering manual white balance even if camera didn't support this
+        (inconsistency that the manual white balance option showed, even though the manual white
+        balance temperature seekbar wasn't shown).
+FIXED   Optional on-screen icons (such as flash, RAW) weren't updating correctly if switching to a
+        camera that didn't support that feature.
+FIXED   Don't show on-screen flash icon in video mode (since this icon doesn't support torch, and
+        flash auto/on not supported in video mode).
+FIXED   Preview texture buffer size (for Camera2 API) could be set incorrectly after changing aspect
+        ratios.
+FIXED   Auto-level photos could never be full resolution (for when angle was 0).
+FIXED   Update on-screen time format more often when changing device settings.
+FIXED   USB/bluetooth keyboard control bug when navigating popup menu, if icons were displayed with a
+        horizontal scrollbar.
+ADDED   New icon for switching between multiple cameras. If your device has multiple front and/or
+        back cameras, then the existing icon to switch cameras will switch between the first front
+        and back camera; the new icon will instead cycle between the multiple front or back cameras.
+        If you prefer the old behaviour, then disable
+        Settings/On screen GUI/"Multiple cameras icon".
+ADDED   Current camera ID now displayed on-screen (next to date/time) for devices with multiple
+        front/back cameras. This can be disabled under Settings/Camera preview/"Show camera ID".
+ADDED   Aperture control, for devices that support this. (Camera2 API only.)
+ADDED   Flash on and torch now supported for manual ISO/exposure.
+ADDED   Option to specify REC709 or sRGB profile for video recording.
+ADDED   New custom gamma profile option for video recording.
+ADDED   New video profiles JTVideo, JTLog and JTLog2 (thanks to JT Haapala).
+ADDED   New option for alpha value to use for ghost image option.
+ADDED   More zebra stripe values 93-99%.
+ADDED   Options to control zebra stripe colours.
+ADDED   Option for storing device's current yaw/pitch/roll in Exif user comment for photos (thanks
+        to Joshua).
+ADDED   New option Settings/More camera controls/"Allow long press actions" to disable long press
+        actions.
+UPDATED Auto-level feature now shows on-screen rectangle to show the frame of the resultant photo.
+UPDATED Improvements for log profiles for video recording. Please note that this means the behaviour
+        of these profiles has changed!
+UPDATED On devices with on-screen navigation buttons, camera preview can now display under these
+        buttons if required for wide aspect ratio (requires Android 5+).
+UPDATED New immersive mode option to hide navigation buttons only when in immersive mode; existing
+        option for hiding navigation buttons now renamed to say "dim".
+UPDATED Show toast with camera id on startup if camera isn't set to the default camera for front or
+        back facing. Toast for cameras also displays whether ultra-wide, when using Camera2 API.
+UPDATED HDR and NR photo modes now limited to maximum resolution of 22 megapixels (to avoid risk of
+        running out of memory on devices with large camera resolutions).
+UPDATED Improved performance when displaying ghost image larger than device's resolution.
+UPDATED Popup menu now displays extra information for resolutions (MP for photos, descriptive name
+        like FullHD, VGA etc for video).
+UPDATED Don't set video digital stabilization when in photo mode.
+UPDATED Some preferences are now showed disabled if only relevant for another nearby option that
+        isn't currently enabled.
+UPDATED Moved video bitrate and frame rate options to debugging section.
+UPDATED Improved UI support for "external" cameras (if detected/supported with Camera2 API).
+UPDATED Improved placement of on-screen text (zoom, video recording time etc) to avoid focus
+        seekbars in landscape mode.
+UPDATED Improved look of on-screen text for manual/exposure sliders.
+UPDATED Exposure icon now highlights red when exposure UI is open.
+UPDATED Exposure UI now auto-opens when switching to manual white balance (as exposure UI contains
+        the manual white balance temperature seekbar).
+UPDATED More repeat mode options (100x, 200x, 500x).
+UPDATED Optimisation for reading most recent photo/video for thumbnail.
+
+Version 1.47.3 (2019/10/20)
+
+FIXED   Grids were being drawing too faintly.
+UPDATED Camera2 API is now a "list" selection rather than a boolean switch.
+UPDATED Updated some icons for newer more consistent material design look.
+UPDATED Changed notification icon to be white.
+UPDATED Minor accessibility improvements.
+UPDATED Clarify in settings that PNG image format is not truly lossless.
+UPDATED Moved licences from about to separate preference category.
+
+Version 1.47.2 (2019/09/04)
+
+FIXED   Some devices (e.g., Samsung) played shutter sound etc when Camera2 API enabled even when
+        phone was on silent/vibrate.
+FIXED   When using "Icons along top" UI placement on devices with notches/cutouts, on-screen text
+        could be covered up by icons in widescreen aspect ratios.
+FIXED   Don't display ghost image whilst frontscreen flash is enabled.
+FIXED   Info toast string for video mode could be too long in some cases for high speed frame rates.
+ADDED   Support for EXTRA_DURATION_LIMIT, EXTRA_SIZE_LIMIT, EXTRA_VIDEO_QUALITY for when called from
+        video (ACTION_VIDEO_CAPTURE) intent.
+UPDATED Minor performance improvement for panorama.
+
+Version 1.47.1 (2019/08/17)
+
+FIXED   Crash in 1.47 when saving photo with SAF and geotagging, when using Camera2 API.
+FIXED   Crash in 1.47 for panorama photo mode if a new photo is taken when a previous panorama is
+        still being processed.
+FIXED   Crash for panorama if no matches found when aligning images.
+
+Version 1.47 (2019/08/14)
+
+FIXED   Disallow switching between auto and manual mode while recording video (this previously
+        crashed).
+FIXED   Crashes related to histogram, zebra stripes, focus peaking - don't crash if we have
+        problems.
+FIXED   Don't close Open Camera if bluetooth service (for remote control) fails to initialise.
+FIXED   Crash related to focus assist if camera closed.
+FIXED   Crashes related to multiple instances of Open Camera and Renderscript.releaseAllContexts().
+FIXED   Some devices (e.g., LG G6) defaulted to front camera, hopefully fixed to default to back
+        camera on all devices that have a back camera.
+ADDED   New panorama photo mode (requires Android 5+, note not all devices are supported).
+ADDED   New option Settings/Photo settings/Text style/"Text with shaded background" for photo stamp
+        option, to draw with a rectangular shaded background (i.e., bringing back the old behaviour
+        that was replaced by the newer outline shadow text).
+UPDATED Notifications now displayed on Android 8+ when Open Camera is in background when images are
+        still being processed/saved.
+UPDATED Improved exposure panel UI, and made on-screen text (zoom, video timer etc) more compact.
+UPDATED Camera ID is now displayed when switching cameras, on devices with more than two cameras.
+UPDATED Set navigation bar colour to black (needed for some devices, e.g., Samsung).
+UPDATED Improved performance on Android 7+ when saving photos when using Storage Access Framework
+        (no longer need to save to a temporary file to handle Exif tags).
+UPDATED When saving "base images" for Noise Reduction mode, keep JPEG quality at 100% even if using
+        post processing options.
+UPDATED Updated Renderscript to 64-bit code.
+
+Version 1.46 (2019/05/18)
+
+FIXED   Problems with toasts being displayed for seekbars on Android 9.
+FIXED   Face detection stopped working when recording video (on old Camera API).
+FIXED   Wasn't displaying crop guides in some cases (when the crop guide aspect ratio matched the
+        photo/video resolution's aspect ratio, but this didn't match the preview's aspect ratio).
+FIXED   Improvement to on-screen placement of pitch and compass lines.
+FIXED   Toast for enabling/disabling face detection (via on-screen icon) was hidden by subsequent
+        info toast from restarting the camera.
+FIXED   Fixed some crashes for old camera API.
+FIXED   Problem with Camera2 API where with manual exposure time, preview would display a maximum
+        exposure time of 1/12s rather than what the manual exposure time had been set to.
+FIXED   When using "red eye" flash, on-screen flash icon (with Camera2 API) was being shown all the
+        time, when this actually behaves similar to flash auto.
+FIXED   Avoid "capturing" text from being covered by focus bracketing sliders in focus bracketing
+        photo mode and landscape orientation.
+FIXED   Don't allow continuous fast burst mode (when holding down shutter button) in standard photo
+        mode with RAW only (previously this appeared to work, but no images were saved).
+FIXED   Crashes with Camera2 API related to multithreading issues.
+FIXED   Problem with camera preview and UI orientation if user switched to reverse landscape
+        orientation whilst in settings or an on-screen dialog was displayed.
+FIXED   When using "Icons along top" UI placement, on-screen text could appear below the icons
+        if icons showed above the camera preview, when popup menu opened.
+FIXED   Layout problem on Nexus 7 with "Icons along top" UI placement when going to settings and
+        back.
+FIXED   Free storage space should now be correct for external SD cards when using Storage Access
+        Framework.
+ADDED   New option Settings/Camera preview/"Show a histogram" to display an on-screen histogram.
+        (Camera2 API only.)
+ADDED   New option Settings/Camera preview/"Show zebra stripes" to display on-screen zebra stripes
+        to indicate over-exposed regions. (Camera2 API only.)
+ADDED   New option Settings/Camera preview/"Focus peaking" to display on-screen highlights to
+        indicate in-focus edges. (Camera2 API only.)
+ADDED   RAW/DNG now enabled on higher end devices for expo bracketing and focus bracketing photo
+        modes, as well as HDR when saving the base expo images. Use the new options Settings/Photo
+        settings/"Allow RAW for expo bracketing" and "Allow RAW for focus bracketing" if you want to
+        enable RAW for standard photo mode, but not for expo/focus bracketing modes.
+ADDED   New option Settings/Photo settings/"Use addresses" to display GPS coordinates in the form
+        of an address (for photo stamp and video subtitles).
+ADDED   Support for remote control via bluetooth/USB keyboards.
+ADDED   New option under Settings/On screen GUI/ to enable on-screen icon for enabling location
+        data.
+ADDED   New option under Settings/On screen GUI/ to enable on-screen icon for cycling through flash
+        modes (instead of on the popup menu).
+ADDED   New option under Settings/On screen GUI/ to enable on-screen icon for cycling through RAW
+        modes.
+ADDED   Support for the Kraken Smart Housing (thanks to Edouard Lafargue). See Settings/More camera
+        controls/"Bluetooth LE remote control...".
+ADDED   Added some more common manual shutter speeds (1/10 to 1/50 now changes in steps of 1/5).
+UPDATED Default UI layout is now "icons along top" (see Settings/On screen GUI/UI placement to
+        change back to old layouts.
+UPDATED Improved DRO algorithm for some scenes (e.g. stop making clouds so unnatural).
+UPDATED Noise Reduction "NR Mode" (normal or low light) is now preserved; the on-screen "NR" icon is
+        now highlighted in yellow in low light mode.
+UPDATED Separated some options under "Settings/On screen GUI" preference screen out into the new
+        screen "Camera preview".
+UPDATED Made exposure UI panel more compact.
+UPDATED On-screen icon for RAW now displayed as "RAW ONLY" if only saving RAW.
+UPDATED Display number of remaining images to save when "processing".
+UPDATED Play notification sound (if shutter sound not disabled) when focus bracketing completes.
+UPDATED Also added option for 150 focus bracketed images.
+UPDATED Code to try to prevent video corruption when running out of space now enabled when using
+        Storage Access Framework.
+
+Version 1.45.2 (2019/01/20)
+
+FIXED   Don't allow focus assist when recording video.
+
+Version 1.45.1 (2019/01/18)
+
+FIXED   Crash when saving settings if SAF enabled, and save location does not correspond to a file
+        based directory.
+FIXED   Some devices in Camera2 mode lost support for modes requiring burst or manual ISO/exposure.
+FIXED   Improve popup view for small screens, to help some languages with longer strings.
+
+Version 1.45 (2019/01/14)
+
+FIXED   Crash if going to background during focus bracketing.
+FIXED   Crash for Camera2 API on devices with no color effects.
+FIXED   Crashes related to saving with storage access framework.
+FIXED   If Open Camera is running above screen lock, don't require screen to be unlocked just to
+        show an info dialog.
+FIXED   Prevent exposure panel from overlapping with on-screen icons on small devices.
+FIXED   Problems with popup view and left handed UI (e.g., wouldn't show when first opened).
+FIXED   Unlimited repeat mode didn't work on some languages (if this affected you, you'll need to
+        re-select the option for unlimited, then it should start work).
+FIXED   If Repeat Mode changed in Settings, the same option on popup menu would sometimes not be
+        updated.
+FIXED   Don't pause on-screen preview when capturing in fast burst mode.
+FIXED   Don't support expo bracketing, focus bracketing or fast burst photo modes if called from a
+        "Take photo" intent.
+FIXED   Taking photos could hang on some devices with Camera2 API when using repeat mode and
+        continuous focus.
+FIXED   ISO manual slider wasn't updating when ISO was changed by using the ISO buttons.
+FIXED   Code meant to increase exposure time for dark scenes in Noise Reduction mode could end up
+        reducing exposure time in some cases.
+FIXED   Wasn't requesting audio permission (for Android 6+) for "Audio control" options.
+ADDED   New "Low light" mode for Noise Reduction photo mode.
+ADDED   Continuous burst mode: holding down shutter button in standard or fast burst photo modes
+        will now enable a continuous burst. (Camera2 API only.)
+ADDED   Focus assist option (Settings/On screen GUI/"Focus assist"), allows auto-zooming when
+        adjusting manual focus distance.
+ADDED   Support for different photo image formats (Settings/Photo settings/"Image format"): WebP,
+        PNG.
+ADDED   Support for different video file formats (Settings/Video settings/"Video format"): H264,
+        HEVC, 3GPP, WebM (WebM is without audio support).
+ADDED   New options to save and restore all settings to a file (see Settings/"Settings manager").
+ADDED   New option Settings/On screen GUI/UI placement/"Icons along top", which enables a new user
+        interface layout where control icons are laid out opposite where the "take photo" icon is
+        (top of the screen in portrait, or left of the screen in landscape).
+ADDED   New options under Settings/On screen GUI/ to enable on-screen icons for enabling face
+        detection, auto-level, photo stamp, custom text stamp, white balance lock; also the
+        exposure lock icon is now optional.
+ADDED   Timelapse capture rates of 120x and 240x.
+ADDED   More auto-repeat options.
+ADDED   Larger options for maximum filesize for video (up to 9GB).
+ADDED   2:1 crop guide.
+ADDED   New "fine" setting for video flat (log) profile.
+ADDED   New lower noise sensitivity for "loud noise" audio trigger.
+ADDED   Vietnamese translation (thanks to Khánh Trần).
+UPDATED Improved HDR algorithm to avoid increasing noise in darker scenes. If you prefer the
+        original behaviour, see Settings/Photo settings/"HDR contrast enhancement" and set this to
+        "Always". Or, you can also set this to "Off" to disable this in all cases.
+UPDATED Improvements to contrast enhancement (as used by HDR, DRO, Noise Reduction): avoid
+        increasing contrast too much in dark regions.
+UPDATED Improvement to Noise Reduction mode colours for some scenes.
+UPDATED Improved quality of deghosting algorithm for Noise Reduction mode (manages to deghost with
+        less loss of quality).
+UPDATED Improved auto-alignment for Noise Reduction mode for dark scenes or when zoomed in.
+UPDATED Allow maximum of 2s instead of 0.5s manual exposure time in Noise Reduction mode.
+UPDATED Made user interface buttons larger.
+UPDATED Focus bracketing mode now supports up to 200 images.
+UPDATED Focus bracketing mode can now be cancelled by pressing the take photo button again.
+UPDATED Focus bracketing mode makes the shutter sound per shot.
+UPDATED Burst images are now labelled starting from "_0" in the filename suffix (to be consistent
+        with expo and focus bracketing).
+UPDATED Make it clearer that Storage Access Framework should be enabled to allow saving to SD cards.
+UPDATED Photo and video resolutions on popup menu now ordered left to right from smallest to
+        largest, rather than largest to smallest.
+UPDATED Ensure photo resolutions are sorted in order (by area).
+UPDATED Video frame rates now specify which are "high speed" (for Camera2 API); also make it clearer
+        if video resolution in settings is for high speed mode.
+UPDATED Improved performance when changing video speed on popup menu.
+UPDATED "Say cheese" voice control now remains on.
+UPDATED Minor improvements for accessibility.
+UPDATED Expo bracketing, focus bracketing, noise reduction and fast burst modes now display number
+        of photos being taken in each burst.
+UPDATED Allow Camera2 mode to be used on more devices (devices that have both some LEGACY cameras,
+        and some cameras with at least LIMITED support).
+UPDATED Content description for exposure lock now updates to say whether clicking will lock or
+        unlock exposure.
+
+Version 1.44.1 (2018/09/23)
+
+FIXED   Crash in 1.44 for ghost image option if selected image could not be loaded due to
+        SecurityException.
+FIXED   Crash with RAW (DNG) in some cases due to threading issue when "Pause after taking photo"
+        enabled.
+
+Version 1.44 (2018/09/18)
+
+FIXED   Crash if activity is destroyed as photo is taken.
+FIXED   Crash if camera reopened 128 times in a single instance of the application.
+FIXED   Fixed some crashes for old camera API.
+FIXED   Fixed crash with Camera2 API when using expo/HDR if fast burst disabled, and camera
+FIXED   In Camera2 API mode, wasn't checking to see if video stabilization option is supported.
+FIXED   Settings/Preview size/"Maximise preview size" option didn't always work correctly on some
+        devices (e.g., Nokia 8).
+FIXED   Fixed a crash related to failing to save with storage access framework.
+FIXED   Switching from slow motion back to regular speed wouldn't reset exposure level on some
+        devices.
+FIXED   Prevent manual focus slider from overlapping with on-screen icons.
+FIXED   Photos taken while recording video were being saved at 100% quality if photo mode was DRO or
+        HDR, even though the photo mode isn't relevant for photos when recording video.
+FIXED   Don't show fast burst options on popup mode when in video mode.
+FIXED   Problem of toasts for seekbars disappearing when continually moving seekbar.
+FIXED   GUI not updating properly when using auto-repeat with timed interval in Camera2 API mode.
+FIXED   Norwegian strings for video bitrate preferences were incorrect.
+ADDED   New photo mode "NR" Noise Reduction, takes a burst of photos and aligns and merges to reduce
+        noise. (Camera2 API only, only supported on high end devices.)
+ADDED   New photo mode "Focus {}" to enable Focus Bracketing. (Camera2 API only.)
+ADDED   New option Settings/"Ghost image", to overlay either last photo taken, or a selected image
+        on your device.
+ADDED   New option Settings/On screen GUI/"Show audio level meter", to display on-screen audio level
+        when recording video.
+ADDED   New option Settings/Video settings/"Video flat (log) profile" to record video with a flat
+        profile. (Camera2 API only.)
+ADDED   New options under Settings/"Processing settings..." for setting Edge Mode and Noise
+        Reduction Mode filtering options. (Camera2 API only.)
+ADDED   New option Settings/Photo settings/"Distance unit" to allow using feet instead of metres for
+        GPS altitude on photo stamp and video subtitles.
+ADDED   On-screen flash icon (to show whether flash will fire or not) now supported for front screen
+        flash.
+ADDED   New Camera2 API debug option under Settings/"Photo settings" to disable taking photos whilst
+        recording video feature (if your device has problems recording videos with Camera2 API
+        enabled, try disabling this).
+ADDED   Camera2 support for high resolution photo resolutions (required for supporting highest
+        resolutions on some devices, e.g., Nokia 6, Samsung Galaxy S6).
+ADDED   Launching from intent now recognises request for front or back camera
+        (android.intent.extras.CAMERA_FACING, android.intent.extras.LENS_FACING_FRONT,
+        android.intent.extras.LENS_FACING_BACK, android.intent.extra.USE_FRONT_CAMERA).
+ADDED   Video bitrate options for 150Mbps and 200Mbps (may not work on all devices).
+ADDED   New video audio source options: UNPROCESSED (requires Android 7) and VOICE_RECOGNITION.
+ADDED   Partial Greek translation (thanks to Wasilis Mandratzis-Walz).
+ADDED   New option to disable ever showing the "What's New" dialog (under Settings/On screen GUI/
+        "Show What's New dialog").
+UPDATED No longer wait for image queue to be saved to go to settings, or background.
+UPDATED On Android 8+ when restarting video due to hitting maximum filesize, transition to new file
+        is now seamless.
+UPDATED Improved behaviour of seekbars for manual ISO, shutter speed, white balance (they now select
+        sensible "round" values).
+UPDATED Show pitch lines etc even when device is near vertically down or up; also highlight the 90
+        degree pitch line when almost vertically down or up.
+UPDATED Don't show auto-level on-screen icon when device is near vertically down or up (since auto
+        level won't occur in that situation).
+UPDATED Always show scrollbar on popup menu (so it's more obvious that it can be scrolled).
+UPDATED Show FPS on-screen when recording video (Camera2 API only).
+UPDATED Made disabled buttons on popup menu easier to see in bright light.
+UPDATED Made on-screen level lines clearer.
+UPDATED New material design gallery icon (used when no last thumbnail found, and also for shortcut
+        icons).
+UPDATED If an option that requires compass direction is set, warn user if compass is unreliable.
+UPDATED Current manual focus distance is now always saved.
+UPDATED Show video bitrate on info toast if not set to default.
+UPDATED More preferences in settings now show the currently selected value.
+UPDATED Battery optimisation: don't use magnetic compass sensor unless required for user
+        preferences.
+UPDATED Camera opening on background thread (for smoother operation) now enabled for Android 6
+        devices (was already supported for Android 7+).
+UPDATED Workaround for bug where popup menu appears too large (off-screen), reopening the popup at
+        least should fix this without having to restart Open Camera.
+
+Version 1.43.3 (2018/04/20)
+
+FIXED   Fixed some crashes.
+ADDED   Added video capture rate, capture rate factor and high speed info to About debug dialog.
+UPDATED Fix toast message if slow motion video fails.
+
+Version 1.43.2 (2018/04/13)
+
+FIXED   Fixed some crashes.
+
+Version 1.43.1 (2018/04/12)
+
+FIXED   Crash when selecting antibanding setting on devices with no support for antibanding; this
+        option is now removed on such devices.
+FIXED   Crash when using Storage Access Framework to select "Downloads" on Android 8+.
+FIXED   Fixed some other crashes.
+
+Version 1.43 (2018/04/10)
+
+FIXED   Fixed crash when sharing images (if not using Storage Access Framework) on some Android 7+
+        devices.
+FIXED   Fixed crash related to devices that don't support video.
+FIXED   Fixed some crashes for when Camera2 API enabled.
+FIXED   Problems when taking HDR or expo photos quickly without pause, the second photo would use
+        incorrect exposure.
+FIXED   Problems with popup view layout on some non-English languages.
+FIXED   On-screen icons (e.g., for HDR) didn't show after restarting.
+FIXED   When using volume keys to switch auto-level on/off, user interface wasn't updating properly.
+FIXED   Face detection mode on Camera2 API wasn't affecting resultant exposure etc.
+FIXED   Bug with video subtitles (.SRT) option, overlapping subtitles could appear briefly when
+        pausing/resuming video.
+FIXED   Bug on some devices (e.g., Nokia 8) where manual sliders (e.g., for manual ISO) could only
+        go up to 1 less than the true maximum allowed value.
+FIXED   Some stored "values" for zh-rCN shouldn't have been translated.
+ADDED   New Fast Burst photo mode (Camera2 API only).
+ADDED   Slow motion video (Camera2 API only).
+ADDED   Time lapse video (requires Android 5).
+ADDED   Torch option for front cameras without flash, which lights up the screen.
+ADDED   Option to save only in RAW/DNG format (requires Android 7).
+ADDED   New options under "Photo settings" to support Artist and/or Copyright Exif tags in images
+        (requires Android 7).
+ADDED   On-screen icons for DRO and Expo Bracketing modes.
+ADDED   On-screen icon for when audio is disabled in video mode.
+UPDATED Now targetting Android 8.1.
+UPDATED Improved appearance of on-screen text and photo stamp text (draw fonts with outline, rather
+        than shaded background).
+UPDATED Improved layout of on-screen information.
+UPDATED Improved look of popup menu.
+UPDATED Improved support for setting frame rates (including high speed support) when using Camera2
+        API. Thanks to George Joseph.
+UPDATED Video frame rate preference is now stored per-camera (as with video resolution).
+UPDATED Burst mode now renamed to Repeat mode (note, some translations may still refer to "burst").
+UPDATED Some preferences in settings now show the currently selected value.
+UPDATED Improved performance when going to settings in portrait mode.
+UPDATED Don't request audio permission (or show toast if not available) if record audio option for
+        video is disabled.
+UPDATED Zoom now resets when pausing the application, switching camera, or switching between photo
+        and video modes (not resetting zoom tends to confuse users; this change also makes behaviour
+        consistent with other camera applications).
+UPDATED For "Pause after taking photo" option, pressing Back when preview is paused now unpauses the
+        preview and keeps the photo, rather than exiting the application.
+UPDATED Don't block UI when image saving queue is full, instead simply don't allow more photos to be
+        taken until queue is no longer full. Size of image saving queue is also increased, depending
+        on memory of device.
+UPDATED Datestamp format (for "Stamp photos" option) yyyy/mm/dd replaced with yyyy-mm-dd (to match
+        ISO 8601 standard).
+UPDATED Camera2 API now sets CONTROL_ENABLE_ZSL for standard and DRO photo modes on Android 8+.
+UPDATED "Use background thread" debug option removed (now defaults to using background thread for
+        saving photos).
+
+Version 1.42.2 (2017/12/30)
+
+FIXED   Fixed some crashes.
+FIXED   Problems with alignment of some dialogs in portrait mode on some devices (possibly an
+        Android 8 issue).
+ADDED   On-screen face icon displayed when face detection is enabled.
+UPDATED Enable 60fps on Android 7+ for GUI rendering.
+
+Version 1.42.1 (2017/12/10)
+
+FIXED   Crash related to front camera fake flash on devices with auto focus and Camera2 API.
+FIXED   Possible fix for boot loop on LineageOS (this is a LineageOS bug exposed by using Android
+        Studio 3; workaround is to upgrade to build tools 27.0.1).
+FIXED   Change in 1.42 for using suffix "_0" etc instead of "_EXP0" etc was only done for HDR expo
+        images; now done for Expo {} photo mode too.
+FIXED   Text style "Plain text" for "Stamp photos" was still showing a shadow effect.
+FIXED   Workaround for Google bug where crash can be reported if application is open when it's being
+        updated ( https://issuetracker.google.com/issues/36972466#comment14 ).
+UPDATED Now targetting Android 8.
+UPDATED New adaptive icon for Android 8 (thanks to Adam Lapinski).
+UPDATED Improve Camera2 quality for Samsung Galaxy S7 and S7 Edge (set EDGE_MODE_OFF and
+        NOISE_REDUCTION_MODE_OFF).
+UPDATED Updated Norwegian Bokmål translation (thanks to Imre Kristoffer Eilertsen).
+UPDATED Updated Polish translation (thanks to Jacek Buczyński).
+
+Version 1.42 (2017/11/19)
+
+FIXED   Fixed some crashes.
+FIXED   Bug since 1.41 where if camera failed to open, it wasn't possible to switch to other
+        cameras.
+ADDED   Application shortcuts (requires Android 7.1).
+ADDED   Face detection now supports accessibility services (e.g., if using Google Talkback,
+        information on the number and position of detected faces will be spoken).
+ADDED   Link to GPL on About dialog.
+UPDATED Expo images (either in "Expo {}" photo mode, or HDR when "Save all images for HDR mode" is
+        selected) are now saved with suffix "_0" etc, instead of "_EXP0" etc. This means Google
+        Photos knows to group the images together.
+UPDATED Performance improvements.
+UPDATED "Show angle" no longer enabled by default.
+
+Version 1.41.1 (2017/10/21)
+
+FIXED   Crash in 1.41 when opening popup menu in video mode on devices without flash.
+FIXED   Crash in 1.41 related to taking photos on burst mode with no delay when camera closing.
+UPDATED Auto-repeat burst mode now closes when going to settings (not safe to be taking photos in
+        background when settings may change).
+
+Version 1.41 (2017/10/15)
+
+FIXED   No longer shows exposure flashes on the screen when taking HDR photos with Camera2 API.
+FIXED   "Pause after taking photo" option was pausing preview after stopping video recording.
+FIXED   Minor bug in HDR auto-alignment.
+ADDED   Take photos while recording video.
+ADDED   What's New dialog now displays to user new features/changes.
+ADDED   Norwegian Bokmål translation (thanks to Imre Kristoffer Eilertsen).
+UPDATED Switch camera icon now next to take photo button, for easier one-handed use.
+UPDATED Switching to video mode now done by selecting the smaller video icon next to the take photo
+        button; similarly switch back to photo mode by selecting the smaller photo icon next to the
+        record video button.
+UPDATED ISO controls now moved entirely to the exposure icon.
+UPDATED Changing ISO values is faster (except for switching between auto and manual mode on Camera2
+        API).
+UPDATED Improved performance by closing camera on background thread when application pauses.
+UPDATED HDR improvements (ghost removal, and brightening of too dark images).
+UPDATED Expo bracketing and HDR photo modes now have maximum exposure time of 0.5s (for Camera2
+        API).
+UPDATED Use material design icons for location/GPS.
+UPDATED Updated Italian translation (thanks to Stefano Gualmo).
+
+Version 1.40 (2017/08/18)
+
+FIXED   Front screen flash wasn't showing if in "everything" immersive mode.
+FIXED   Shouldn't show "RAW" on-screen icon when RAW is enabled, but it's not
+        supported by the current camera.
+FIXED   Fixed title of calibrate level angle dialog (shouldn't be "About").
+FIXED   Various crashes.
+FIXED   Don't show two toasts when changing scene modes (bug in 1.39).
+FIXED   For DRO and HDR modes with Camera2 API, don't set ISO value outside of
+        supported range.
+ADDED   Polish translation (thanks to Jacek Buczyński).
+UPDATED Improvements to HDR algorithm for brightness levels (problems with HDR
+        photos coming out too dark).
+UPDATED Changing color effect or white balance is now faster, and no longer
+        closes the popup (unless switching to manual white balance); for
+        Camera2 mode, changing scene mode is also faster.
+UPDATED Improved performance when leaving Settings, if certain preferences
+        haven't been modified.
+UPDATED Close camera on background thread.
+UPDATED Pause icon now changes when pausing video (thanks to Johan Ejdemark).
+UPDATED Make pause icon easier to see against bright backgrounds.
+UPDATED Larger gap between bottom of zoom slider and edge of screen (reduce
+        risk of hitting device capacitive buttons when zooming out).
+UPDATED Don't show ISO info on debug window that's specific to old camera API,
+        when using Camera2 API.
+UPDATED Performance improvements: reduced memory allocations.
+UPDATED Make sure exposure lock icon is set whilst camera is opening.
+UPDATED White balances, scene modes, color effects are now shown as "user
+        readable" strings (except for old Camera API where there are device
+        specific values). This also means these strings can be translated in
+        future versions.
+UPDATED About debug info now lists information on supported exposure
+        compensation and manual ranges.
+
+Version 1.39 (2017/06/28)
+
+FIXED   For Camera2, don't show flash of previous preview image when resuming
+        application.
+FIXED   Crash when exiting (related to cleaning up renderscript object).
+UPDATED Camera now opens on background thread (for smoother operation) on
+        Android 7+.
+UPDATED Performance improvements for opening popup view.
+
+Version 1.38.2 (2017/06/01)
+
+FIXED   Various crashes.
+UPDATED Performance improvements for opening popup view.
+
+Version 1.38.1 (2017/05/22)
+
+FIXED   Various crashes.
+FIXED   Don't show expo bracketing for original camera API if exposure
+        compensation is not supported.
+UPDATED Performance improvements.
+
+Version 1.38 (2017/05/13)
+
+FIXED   Crash with video subtitles option when GPS is lost.
+FIXED   Fixed various other crashes.
+FIXED   Photo stamp now shows in correct orientation, on devices that store
+        orientation as Exif tag (e.g., Samsung devices).
+FIXED   Still show flash symbol (for flash auto) even if "Show ISO" option is
+        disabled (for Camera2 API).
+FIXED   Minor bug in DRO/HDR image generation.
+ADDED   Manual white balance temperature (Camera2 API only).
+ADDED   HDR and expo bracketing now available for original Camera API (HDR
+        still requires Android 5+) (Camera2 API will still be much faster).
+ADDED   On-screen icons now displayed to indicate options being enabled, for
+        RAW, auto-stabilise, HDR, photo stamp.
+ADDED   Hungarian translation (thanks to Báthory Péter).
+ADDED   Ukranian translation (thanks to Olexandr).
+UPDATED Improved HDR algorithm for areas that are over-exposed even on the
+        darkest image.
+UPDATED More Exif tags preserved when saving in modes that require re-saving
+        the image (e.g., auto-stabilise, photo stamp, DRO, HDR) (requires
+        Android 7). Performance also improved for such modes on Android 7.
+UPDATED Improved ISO and exposure time scaling for the manual sliders.
+UPDATED Don't leave gaps between various on-screen info text (time, free
+        memory, etc) if some of them are disabled.
+UPDATED Number of exposure bracketing stops now refers to the full half-range.
+UPDATED "Auto-stabilise" option now renamed to "Auto-level", to avoid confusion
+        with image stabilisation.
+UPDATED Performance improvements.
+
+Version 1.37 (2017/02/12)
+
+FIXED   Crash on devices not supporting scene mode.
+FIXED   Crash if failed to start audio listener (for "loud noise").
+FIXED   Problems with focusing on OnePlus 3T with Android 7 on Camera2.
+FIXED   Problems with "alternative" flash method for Camera2 API on OnePlus 3T.
+FIXED   Improved support for standard flash on Camera2 API on OnePlus 3T.
+FIXED   Support for long manual exposure times (with Camera2 API) (e.g.,
+        OnePlus 3T).
+FIXED   Remove duplicate entries from ISO buttons (e.g., for OnePlus 3T).
+FIXED   Problems with "fast HDR/expo burst" on Nexus 6 now fixed (you should be
+        able to reenable this under "Photo Settings", for faster HDR and expo
+        bracketing shots.
+FIXED   Shutter sound option wasn't working for Camera2 API unless a photo had
+        previously been taken in the same session.
+ADDED   Display flash symbol for Camera2 API in flash auto mode, to indicate
+        whether flash will fire.
+UPDATED Improved battery life when going idle.
+UPDATED Improved support for flash auto decision on when to take a photo, when
+        using "alternative" flash method and/or HDR, expo bracketing for
+        Camera2 API (it now matches the decision when not using the alternative
+        flash method).
+UPDATED Finer control for manual seekbars.
+UPDATED Display "Capturing..." when manual exposure time is 0.5s or longer.
+UPDATED Support face detection on more devices (e.g., OnePlus 3T) with Camera2
+        API.
+UPDATED Improved popup view so selected button is centred rather than aligned
+        left.
+UPDATED Continuous focus is now the default for new installs on all devices.
+
+Version 1.36.2 (2017/01/01)
+
+FIXED   Save location folder dialog wasn't working from Settings in 1.36.
+
+Version 1.36.1 (2016/12/31)
+
+FIXED   Fixed a couple of crashes.
+
+Version 1.36 (2016/12/28)
+
+FIXED   "Loud noise" audio control wasn't working.
+FIXED   Remember focus mode for video mode.
+FIXED   Focus circle for continuous focus mode would sometimes show green.
+FIXED   Improved behaviour for photo/video mode when launched from a take photo
+        or record video intent (no longer keeps switching back to photo mode
+        when pause/resuming if called from a photo intent; now allows switching
+        to photo mode if called from a video intent).
+FIXED   Make line-spacing for toasts more consistent.
+FIXED   Improved "Max duration of video", was stopping up to a second
+        prematurely.
+ADDED   New photo mode "DRO" (dynamic range optimisation) (requires Android 5).
+ADDED   Quick settings tiles to open camera (requires Android 7): tiles for
+        photo, video and selfie mode.
+ADDED   Pause/resume video recording (requires Android 7).
+ADDED   New option to mirror photos for front camera (Settings/Photo settings/
+        "Front camera mirror").
+ADDED   Option to calibrate the level angle (accelerometer) (see Settings/More
+        camera controls/"Calibrate level angle".
+ADDED   New option to display on-screen pitch lines (Settings/On screen GUI/
+        "Show pitch lines") and compass direction lines (Settings/
+        On screen GUI/"Show compass direction lines").
+ADDED   Camera2 API popup menu now has "ISO M" option to switch straight to
+        manual exposure mode, but defaulting to the current ISO value.
+ADDED   New option "Video subtitles" (Settings/Video settings/). This creates a
+        subtitle file (in .SRT format) displaying date and time; and also GPS
+        location and direction if those options are enabled
+ADDED   New option to disable showing the "take photo" button (under Settings/
+        On screen GUI/"Show take photo icon").
+ADDED   3 seconds entry for "Max duration of video" option.
+UPDATED HDR now has auto-alignment for better quality photos.
+UPDATED Moved white balance/scene mode/color effect options lower down the
+        popup menu.
+UPDATED No longer auto-stabilise or display level angle when device pointing
+        nearly up or down.
+UPDATED Apply low pass filter for compass direction.
+UPDATED Continuous focus mode is now the default for back camera for Nexus and
+        Pixel devices.
+UPDATED About/debug info now shows whether disabling shutter sound is supported.
+UPDATED Updated Russian translation (thanks to Grigorii Chirkov).
+UPDATED Updated Slovenian translation (thanks to Peter Klofutar).
+
+Version 1.35 (2016/10/30)
+
+FIXED   Crashes for Galaxy Ace 4, Galaxy S Duos 3 (to do with Exif data).
+FIXED   Workaround for Android 7 bug where rotated seekbars don't show
+        properly.
+FIXED   Problem that after pausing and resuming in manual ISO mode, the
+        on-screen ISO was shown continually in red.
+FIXED   Improved handling of camera errors - display error rather than just
+        allowing preview to freeze.
+ADDED   New "Enable fast HDR/expo burst" option under "Photo settings" for
+        Camera2 mode. Disable this if your device has problems taking photos in
+        HDR or Exposure Bracketing photo modes.
+UPDATED Improvements to HDR algorithm: improved tonemapping; local contrast
+        enhancement.
+UPDATED Improved performance of on-screen toasts, gives smoother update for
+        seekbars (e.g., manual focus, exposure).
+UPDATED Launching Open Camera always opens in camera mode (rather than gallery,
+        if the user had previously gone to the gallery).
+UPDATED Improved look of seekbars, particularly for exposure.
+UPDATED Folder chooser now contains entry to jump to DCIM folder.
+UPDATED Timeout for camera2, give up waiting after 10s rather than freezing.
+UPDATED Updated Russian translation (thanks to Grigorii Chirkov).
+UPDATED Updated Slovenian translation (thanks to Peter Klofutar).
+UPDATED Now supporting Android 7.
+UPDATED Now compiling with Android Studio instead of Eclipse.
+
+Version 1.34 (2016/10/08)
+
+FIXED   Crash on Camera2.
+FIXED   Crash for Asus ZenFones with Android 5.0.
+FIXED   Face detection and touch to focus not working properly with Camera2 and
+        "Rotate preview" option; this should also hopefully fix problems for
+        devices with unusual camera orientations (Nexus 5X).
+FIXED   Face detection wouldn't switch off with Camera2 API without restart.
+FIXED   For file dialog, still allow going up to parent folders even if a
+        folder contains no readable files.
+FIXED   Pause preview option now shows exactly the saved photo (no lag, and
+        works with options such as auto-stabilise, photostamp, HDR).
+FIXED   Nexus 6 got wrong date/time when using Camera2 API with geotagging
+        enabled.
+ADDED   New photo mode Exposure Bracketing. Only supported for devices with
+        Camera2 API (and Camera2 must be enabled).
+ADDED   New "Use alternative flash method" option under "Photo settings" for
+        Camera2 mode. This offers a possible workaround for devices that have
+        poor flash behaviour with Camera2 API.
+ADDED   Screen flash to simulate flash auto/on modes for front cameras without
+        flash ("auto" requires Camera2).
+ADDED   Material design icons for Settings.
+UPDATED Now supporting Android 6 permissions. You'll have to "allow"
+        permissions for camera and storage for Open Camera to work. Additional
+        permissions requested when required are microphone (for video) and
+        location (for geotagging).
+UPDATED HDR mode now supports flash modes.
+UPDATED Extra protection for video recording and running out of storage space -
+        if not using Storage Access Framework, and saving to internal memory,
+        videos should now stop rather than becoming corrupt when running out of
+        storage. Note this can't be supported for Storage Access Framework or
+        SD cards due to Android limitations.
+UPDATED Stop video when battery level critical, to give extra protection when
+        device runs out of video (see
+        Settings/Video settings/"Critical battery check" to disable this
+        behaviour).
+UPDATED Gallery icon now right-most.
+UPDATED On-screen icons now have transparent icons.
+UPDATED Improved look of popup-menu: headings are larger and in bold.
+UPDATED New material design icon for exposure.
+UPDATED On-screen ISO (for Camera2 API) displays red when auto-exposure routine
+        is scanning.
+UPDATED Manual exposure times longer than 1s now shown directly rather than as
+        a reciprocal.
+UPDATED Thicker lines for grid, auto-focus grid.
+UPDATED Battery icon shows red at 15% instead of 30%; also now flashes at 5% or
+        less.
+UPDATED On-screen icons now rotate with animation.
+UPDATED Reorganised some preference settings.
+UPDATED Set metadata tags for sound files beep.ogg and beep_hi.ogg.
+UPDATED Updated French translation (thanks to Eric Lassauge).
+UPDATED Updated Slovenian translation (thanks to Peter Klofutar).
+UPDATED Show compass direction option now defaults to off.
+
+Version 1.33 (2016/08/29)
+
+FIXED   Hang when starting with Camera2 API on Android N.
+FIXED   Problems with popup menu on some languages and screen sizes.
+FIXED   Problems with Camera2 and flash: no longer does excessive flash; also
+        fixed problem where with flash auto, flash would sometimes misfire
+        resulting in too dark photos.
+FIXED   Problem with Pause Preview option: if a photo with RAW was saved, then
+        another photo without RAW saved and deleted, the previous RAW was also
+        deleted.
+ADDED   New photo mode HDR. Only supported for devices with Camera2 API (and
+        Camera2 must be enabled).
+ADDED   Support for manual ISO for old camera API on Asus Zenphone 2 Z00A and
+        Z008 (thanks to Fl&aacute;vio Keglevich).
+ADDED   Portuguese translation.
+ADDED   Slovenian translation (thanks to Peter Klofutar).
+UPDATED Folder history (via Gallery long click) now supported when using Storage
+        Access Framework.
+UPDATED When switching from auto to manual ISO mode in Camera2 API, exposure
+        time now defaults to the current (auto) exposure time.
+UPDATED Updated Russian translation (thanks to Dmitry Vahnin aka JSBmanD).
+
+Version 1.32.1 (2016/07/24)
+
+FIXED   Crash on some devices when taking photos with RAW enabled.
+
+Version 1.32 (2016/07/19)
+
+FIXED   Don't repeatedly focus when volume key held down (for "focus" volume
+        key option). Hopefully this may help for devices with physical focus
+        buttons.
+FIXED   Border to indicate photo is being taken no longer remains for "Pause
+        after taking photo" option.
+FIXED   Now plays sound for start/stop video recording (if shutter sound
+        enabled) for Camera2 API.
+ADDED   Support for RAW (DNG) files. Only available in Camera2 mode, and if
+        your device supports it. Note that most Gallery apps don't recognise
+        DNG files, instead use specialised applications like Google Snapseed
+        and Adobe Photoshop Lightroom, or transfer to a PC.
+UPDATED If volume keys are set to "focus", then holding down both volume keys
+        will take a photo (this makes your volume keys behave more like a
+        physical camera button - hold down one key to focus, then both to take
+        a photo).
+UPDATED Allow one more photo to be processed in background at a time.
+UPDATED Improved timing of shutter sound for Camera2 API.
+UPDATED Enabling auto-stabilise now shows an info dialog. Select "Don't show
+        again" to prevent the dialog from showing again.
+UPDATED Thumbnail for most recent photo/video now restricted to Open Camera's
+        save folder when using Storage Access Framework (this was aready the
+        case when not using Storage Access Framework).
+UPDATED 5s and 10s options for maximum video duration.
+
+Version 1.31 (2016/06/19)
+
+FIXED   Crash on Camera2 API (checkArgumentNonnegative).
+FIXED   Photo filename's date/time and date/time used for photostamp now match
+        better with time the photo was actually taken, rather than when the
+        image was saved.
+FIXED   Improved Take Photo widget behaviour so it focuses in continuous focus
+        mode.
+ADDED   New option for filenames to be based on UTC (Zulu) time (thanks to
+        David Pletcher).
+UPDATED Photos now processed in background thread, for smoother operation (if
+        this causes problems, you can disable it under Settings/Photo settings/
+        Use background thread).
+UPDATED Touching the screen with continuous focus mode in photo mode now causes
+        an autofocus.
+UPDATED Gallery button shows animation effect to indicate saving images.
+UPDATED Photo/video info toast now indicates if auto-stabilise option is on.
+UPDATED Don't display pointless toast for front/back camera any more.
+UPDATED Updated Russian translation (thanks to Grigorii Chirkov).
+
+Version 1.30.1 (2016/06/01)
+
+FIXED   Crash in 1.29 on some devices on startup.
+
+Version 1.30 (2016/05/29)
+
+FIXED   Crash in some cases when failing to save photo.
+FIXED   Crash in some cases when opening settings.
+FIXED   Focus/metering regions and face detection now works properly with
+        Camera2 when zoomed.
+FIXED   Audio control icon still showed if audio control was disabled, when
+        previously set to "loud noise" option.
+UPDATED Popup menu now uses the more standard three dots icon.
+UPDATED Popup menu also shows indicator for flash being off.
+UPDATED Show zoom seekbar closer to the edge of screen if -/+ controls not
+        enabled; always show manual focus distance seekbar closer to the edge.
+
+Version 1.29 (2016/05/06)
+
+FIXED   Still show Camera2 API option for Android N's LEVEL_3 hardware level.
+FIXED   Problems with flash mode on Camera2 API - now seems to be working
+        better on my Nexus 6 at least...
+FIXED   Sluggish zooming with Camera2 API.
+FIXED   With Camera2 API, if starting up with flash auto or on, and in focus
+        modes other than auto, macro or locked, then flash wouldn't fire.
+FIXED   Problems on some devices where we claimed failed to take photo, even
+        though it had succeed (some Samsung devices call the autofocus callback
+        more than once).
+FIXED   Video recording icon would get stuck on red ("playing") if failed to
+        save video file.
+FIXED   Too long string for 3x3 grid for French translation on popup menu.
+ADDED   Proper support for continuous focus mode for photo mode.
+ADDED   Graphical border effect when taking a photo (if you don't like this,
+        you can disable it under Settings/On screen GUI/"Show border when
+        taking photo").
+ADDED   Animation effect for auto-focus square.
+UPDATED Improved on-screen graphics (line drawings now have proper
+        density-independent thickness rather than being hairline).
+UPDATED On-screen ISO display (for Camera2) simplified and moved to top of
+        screen.
+UPDATED Use Switches instead of Checkboxes in Settings where appropriate.
+UPDATED Content description for "switch photo/video mode" button now updates to
+        indicate whether it will switch to photo or video mode. Content
+        description for "switch camera" button now updates to indicate whether
+        it will switch to the front or back camera.
+UPDATED Improved content descriptions for buttons on popup menu (focus/flash
+        buttons now say which mode they are).
+UPDATED Disabled flash options for manual ISO mode in Camera2 API (doesn't work
+        properly; plus flash is less useful when setting ISO manually anyway).
+UPDATED Switching to ISO auto and back to manual now resets the exposure time
+        to default.
+UPDATED Debug info now includes device language setting.
+UPDATED Default to FullHD rather than higher video resolutions, if possible.
+
+Version 1.28.1 (2016/03/30)
+
+FIXED   Crash when going to "Photo settings" on devices with Czech language
+        (bug introduced in 1.28).
+
+Version 1.28 (2016/03/25)
+
+FIXED   Broadcast File-based Uri when using Storage Access Framework, instead
+        of SAF Uri (this fixes Owncloud crashing for auto-upload photos/videos
+        option; this might also fix problems with photos/videos not showing up
+        on SD card until after a reboot?)
+FIXED   Unable to get location from network providers on some pre-Android 6
+        devices (e.g., Galaxy Nexus, Nexus 7) since v1.27 due to Android OS
+        bug, have worked around this.
+FIXED   If using Storage Access Framework, and save location was on external SD
+        card, the on-screen free memory would show internal storage. (Note that
+        with this fix, it may be that the free memory is not shown for external
+        SD cards, but that's better than showing an incorrect value.)
+FIXED   Toast for hitting max filesize on video recording wasn't shown for very
+        long.
+FIXED   Was incorrectly showing "n repeats to go" toast even if it wasn't going
+        to repeat (e.g., due to user stopping video recording).
+FIXED   Use unicode character for degrees symbol (fixes warning in Android
+        Studio).
+FIXED   Corrected content description of take photo icon for when switched to
+        video mode (for accessibility).
+FIXED   Don't show thumbnails of earlier photos/videos when device is locked.
+FIXED   Fixed various FindBugs errors.
+ADDED   New options to take photo/record video by making a noise, or responding
+        to the voice command "cheese".
+ADDED   Option to control maximum filesize of videos.
+ADDED   New option to disable performing auto-focus on startup (disable this if
+        you have the bug where flash turns on on startup).
+ADDED   Belarusian translation (thanks to Zmicer Turok).
+ADDED   Czech translation (thanks to Jaroslav Svoboda).
+ADDED   Japanese translation (thanks to Mitsuse).
+ADDED   Turkish translation (thanks to Serdar Erkoc).
+UPDATED Video now automatically restarts (rather than stopping) if the device's
+        maximum filesize (typically ~2GB), or the user specified limit, is hit.
+        (Option also added to not restart, if you prefer.)
+UPDATED Don't show info toasts so often - only if an unusual non-default
+        setting is set, or when switching between photo and video modes.
+UPDATED Improved quality of take photo/video icons.
+UPDATED Improved look of focus indicator.
+UPDATED Display countdown timer as hours:minutes:seconds when 60 seconds or
+        more.
+UPDATED No longer show pointless toast for stopping video recording.
+UPDATED Display if face detection is turned on in info toast.
+UPDATED Level line now has a crossbar to indicate the vertical angle better.
+UPDATED Reorganised the Settings ("Lock screen when recording video" moved to
+        "Video settings", "Rotate preview" moved to "On screen GUI").
+UPDATED Minor performance improvement to startup time.
+UPDATED Condense popup view by combining some titles into the buttons.
+UPDATED Updated Chinese Simplified translation (thanks to Michael Lu).
+
+Version 1.27 (2015/10/25)
+
+FIXED   Crash on Android 6 when accessing popup menu.
+FIXED   Crashes on Android 6 if users have denied permissions (currently Open
+        Camera won't request permissions at runtime, and please don't expect
+        well-defined behaviour if you've blocked a permission, this is a quick
+        fix to prevent crashes).
+FIXED   Problems when holding down volume/focus/camera key to focus.
+FIXED   Camera2 API photos sometimes taken before focused; autofocus square
+        sometimes turned green immediately before focus actually succeeded.
+FIXED   Take photo icon would momentarily switch to video icon when going to
+        settings.
+FIXED   Video bitrates now correctly documented as bps rather than bits.
+ADDED   3 second option for timer/repeat mode.
+ADDED   German translation (thanks to Ronny Steiner and Sebastian Ahlborn).
+UPDATED Improved selfie stick button support (thanks to Lau Keat Hwa).
+UPDATED Improved icons for app, and take photo (thanks to Adam Lapinski).
+UPDATED Updated French translation (thanks to Olivier Seiler).
+UPDATED Updated Russian translation (thanks to Vitamin).
+
+Version 1.26 (2015/07/06)
+
+FIXED   Crashes on some devices if camera couldn't be opened.
+FIXED   Crash in Camera2 API to do with focusing.
+FIXED   Crash in Camera2 API when camera not available.
+FIXED   Crash if pressing volume keys to change exposure when camera couldn't
+        be opened.
+FIXED   Taking photo would sometimes hang if flash on, and taking a photo
+        whilst already focusing.
+FIXED   "Show thumbnail animation" preference was ignored since v1.24.
+FIXED   Saving of Exif tags (including GPS compass direction) now handled
+        properly when Open Camera is called via another app to take a photo
+        (note that some 3rd party apps may still override the Exif tags).
+FIXED   Was sometimes displaying "0" for timer countdown and playing a beep
+        when taking a photo on timer.
+FIXED   If a photo was taken before startup autofocus completed, flash was
+        incorrectly turned off.
+FIXED   If torch is on, don't turn it off and on when Open Camera is starting
+        up.
+FIXED   Now switches to photo mode automatically when called from a photo
+        intent (ACTION_IMAGE_CAPTURE, ACTION_IMAGE_CAPTURE_SECURE,
+        INTENT_ACTION_STILL_IMAGE_CAMERA,
+        INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE).
+FIXED   Reenable exposure compensation when using non-default ISO for original
+        Camera API.
+ADDED   Support for Android 5's Storage Access Framework. This should allow
+        saving to SD cards, but has to be enabled under Settings/More camera
+        controls/"Use Storage Access Framework".
+ADDED   New option "Touch to capture" - take photos by touching or
+        double-tapping anywhere on the preview.
+ADDED   New option to allow disabling "toast" messages.
+ADDED   New grids: 3x3 Phi, Crosshair, Golden (Fibbonaci) Spirals, Golden
+        Triangles, Diagonals.
+ADDED   New crop guides: 1:1, 5:4, 7:5.
+ADDED   Options for date, time and GPS formats (including 12/24 hour choice),
+        and font color, for date and time stamps.
+ADDED   Option for highlight color to use for angle display and level line,
+        when camera is nearly level.
+ADDED   Option for mono or stereo audio when recording video (stereo only
+        supported on some devices).
+ADDED   Support for INTENT_ACTION_VIDEO_CAMERA intent (so Open Camera can now
+        be launched in video using OK Google's "record a video") and
+        ACTION_VIDEO_CAPTURE.
+ADDED   Support for ACTION_IMAGE_CAPTURE_SECURE intent.
+ADDED   Optional voice countdown for timer.
+ADDED   Info toast now shows if timer and/or burst mode enabled.
+ADDED   More repeat mode intervals, now up to 2 hours.
+ADDED   New "Text style" option to render "stamp" text without a shadow
+        background effect.
+ADDED   Azerbaijani translation (thanks to Eldost).
+ADDED   Brazilian translation (thanks to Kaio Duarte).
+ADDED   Chinese Traditional translation (thanks to You-Cheng Hsieh).
+ADDED   French translation (thanks to Olivier Seiler).
+ADDED   Korean translation (thanks to Halcyonest).
+UPDATED Choice of grid now available on the popup menu.
+UPDATED Focus mode remembered for photo mode even when switching to video mode
+        and back.
+UPDATED Improved timer beep sound; also plays a higher pitch sound for one
+        second to go.
+UPDATED Record video button now turns red when recording video.
+UPDATED Popup menu now shows symbol for red eye mode.
+UPDATED Make icons transparent again, when using Material Design theme.
+UPDATED Made popup menu slightly more transparent.
+UPDATED Slight tweak to colours of take photo/video icons.
+UPDATED "Timer beep" preference moved to "More camera controls..." page.
+UPDATED Updated Chinese Simplified translation (thanks to Michael Lu).
+UPDATED Updated Russian translation (thanks to Vitamin).
+UPDATED Updated Spanish translation (thanks to Mario Sanoguera).
+
+Version 1.25 (2015/04/23)
+
+FIXED   Crash when clicking on settings if camera couldn't be opened.
+FIXED   Various other crashes.
+
+Version 1.24 (2015/04/18)
+
+FIXED   Problem on Nexus 6 where torch didn't turn off until going to flash
+        off mode (this came back again - possibly due to Android 5.1 update!).
+FIXED   Problem that a toast wouldn't clear if new toasts were repeatedly
+        created.
+FIXED   Toast for changing exposure compensation is no longer on top of the -/+
+        buttons.
+FIXED   Some UI controls had missing contentDescription attribute (needed for
+        accessibility).
+FIXED   Corrected Italian translation for "Save location" setting.
+FIXED   Avoid slowdown when repeatedly pressing switch camera or switch video
+        buttons.
+ADDED   New option to enable Android 5's Camera2 API! Currently experimental.
+        Restricted to only some devices (e.g., Nexus 6).
+ADDED   True manual focus mode, which allows setting the focus distance with a
+        slider (only if Camera2 API is enabled).
+ADDED   Option to display current ISO on screen (only if Camera2 API is
+        enabled).
+ADDED   If using non-auto ISO, a specific ISO value and exposure time can now
+        be selected via sliders by clicking the exposure compensation button
+        (only if Camera2 API is enabled).
+ADDED   Chinese Simplified translation (thanks to Michael Lu).
+UPDATED Focus Manual mode renamed to Focus Locked; also it no longer refocuses
+        when switching to this mode.
+UPDATED Improved look of on-screen level bar - now easier to see against white
+        background; it also becomes a double bar as well as turning green when
+        nearly level (for accessibility).
+UPDATED Angle display on-screen is now underlined as well as turning green when
+        nearly level (for accessibility).
+UPDATED Level angle no longer flips between "-0.0" and "0.0" when near zero
+        angle.
+UPDATED Option to reset settings now restarts app.
+
+Version 1.23 (2015/02/16)
+
+FIXED   Some devices (Nexus 5, Nexus 6) had dark preview/photos in low light,
+        and frame rate not as smooth as it could be in good light.
+FIXED   Problem on some devices (including Nexus 5 and Nexus 6) where torch
+        didn't turn off until going to flash off mode (have actually fixed it
+        this time!).
+FIXED   Crash on some Sony Xperia devices when in video mode.
+FIXED   Fix for devices where there is no write access for DCIM (thanks to
+        https://sourceforge.net/u/olevs ).
+FIXED   Wasn't displaying free memory when first run, if OpenCamera folder
+        didn't already exist.
+FIXED   If GPS lost, old possibly out of date position was still being used.
+FIXED   Gallery now shows/goes to latest image/video in the chosen Open Camera
+        save folder, rather than the latest image/video on the device. Also
+        fixed problem if there existed a file with a datestamp in the future -
+        these are no longer shown, even if located in the save folder.
+FIXED   Some devices displayed "ISO ISO100" etc on popup menu.
+FIXED   Pressing "No" to "Clear Save History" left screen as all black.
+FIXED   Don't created corrupted video file if video recording stopped too
+        quickly after starting (when no video data is received).
+FIXED   Font size used for date/geo stamping photos now scales sensibly with
+        photo resolution.
+FIXED   Thumbnail created after taking a photo didn't always reflect actual
+        image saved, if using auto-stabilise or date/geo stamp options.
+FIXED   Popup button wasn't being hidden in immersive mode, on devices with
+        flash.
+FIXED   Don't show "Force 4K UHD video" option if 4K mode is already supported
+        by the device in the standard video resolutions.
+ADDED   Italian translation (thanks to Valerio Bozzolan).
+ADDED   Options to customise photo and video filenames.
+ADDED   New option "Keep display on", can now disable the behaviour to keep the
+        screen on.
+ADDED   Burst mode control now available on popup menu.
+ADDED   A custom text can now be stamped onto photos.
+ADDED   New option to choose font size for date/geo/text stamping on photos.
+ADDED   Can now change video resolution from popup menu.
+ADDED   Crop guide 1.5 (3:2).
+ADDED   Audio source can now be set to "default" or "Optimised for voice".
+UPDATED GPS listener now prefers GPS provider to Network provider if both are
+        available.
+UPDATED GPS listener now sets min time of 1s, to improve battery usage.
+UPDATED Now uses Material Design theme style on Android 5.
+UPDATED Now uses dark theme for Settings (more consistent with rest of app;
+        better for not ruining night vision; sorry if you preferred the old
+        look, but Android doesn't seem to cope well with mixing themes in the
+        same Activity).
+UPDATED "Photo and video settings" preference screen now split up into "Photo
+        settings", "Video settings" and "Location settings".
+UPDATED Exposure level now displayed in units of "EV".
+UPDATED Toast now displays if focus, ISO, color effect or white balance modes
+        are non-default.
+UPDATED Popup menu now supports horizontal scrolling if there are too many
+        flash, focus or ISO buttons.
+UPDATED Popup menu photo resolution switcher now displays megapixels of each
+        resolution.
+UPDATED Switching resolutions from popup menup is now smoother.
+UPDATED Removed android.hardware.camera.autofocus as being a required feature
+        (this meant Open Camera didn't show up in Google Play on devices
+        without auto-focus camera).
+
+Version 1.22 (2015/01/04)
+
+FIXED   Crash if camera couldn't be opened, and GUI buttons were pressed.
+FIXED   Crash that could occur if camera closes whilst taking a photo.
+FIXED   Crash on Galaxy Nexus in rare circumstances when switching camera.
+FIXED   Pressing take photo button didn't cancel burst mode when not using
+        timer.
+FIXED   If failed to create video file when recording video, UI wasn't put back
+        into proper state.
+FIXED   EXIF tags DateTimeOriginal and DateTimeDigitized weren't being saved in
+        some cases (if using auto-stabilise, geotagging or stamp photo
+        options).
+ADDED   New immersive mode (requires Android 4.4 KitKat or higher), under
+        Settings/On screen GUI/Immersive mode. You can set the option to use
+        KitKat's immersive mode, either hiding the GUI, or even hiding
+        everything except the camera preview. Touch the preview or swipe in
+        from side to exit immersive mode. Also added an option to not even dim
+        the on-screen virtual navigation buttons.
+ADDED   Option to reset all settings to default.
+ADDED   Options to control whether time and/or battery status are displayed
+        on-screen.
+ADDED   Can now set burst mode to unlimited.
+ADDED   New option to only allow taking photo/video if GPS location data is
+        available.
+ADDED   Tagging photos with GPS direction is now a separate option ("Store
+        compass direction" rather than "Store location data"). If you are
+        upgrading and want photos to remain tagged with GPS direction, please
+        enable the new option.
+UPDATED Can now choose new save location from recent save folders picker.
+UPDATED Improved look of recent save folders picker.
+UPDATED Popup menu button now also shows indicator for torch.
+UPDATED If camera only supports one scene mode etc, no point offering the
+        option to the user.
+UPDATED "Take Photo" shortcut is now done as a widget rather than a shortcut
+        (if you previously had this shortcut on your homescreen, you may need
+        to re-add it as a widget).
+
+Version 1.21 (2014/11/15)
+
+FIXED   Broadcasts of Camera.ACTION_NEW_PICTURE, com.android.camera.NEW_PICTURE
+        and Camera.ACTION_NEW_VIDEO intents weren't supplying the Uri correctly
+        - auto-uploading for photos and videos with Owncloud should now work.
+FIXED   Corrected look of popup animation when in left-handed UI mode.
+FIXED   If called via an intent, and returning the bitmap via a parcel, the
+        bitmap wasn't being resized to a small size if auto-stabilise option
+        was enabled.
+ADDED   Option to stamp photos with date and time; and also GPS if location
+        data is enabled.
+ADDED   New application shortcut "Take Photo", which automatically takes a
+        photo after opening Open Camera.
+ADDED   Lock screen widgets, to allow calling Open Camera from the lock screen,
+        and taking a photo from the lock screen (requires Android 4.2).
+UPDATED Popup menu button now shows flash indicator (for flash auto or on).
+UPDATED Cleaned up settings - removed some options that are more easily
+        selected from the popup menu (ISO, white balance, scene mode, color
+        effect, auto-stabilize).
+UPDATED New material design icon.
+
+Version 1.20 (2014/09/21)
+
+FIXED   Crash (NumberFormatException in Parameters.getPreviewFpsRange()) on
+        startup for mb526.
+FIXED   Problems if settings window was opened while timer was active (timer is
+        now cancelled when going to settings).
+ADDED   New popup menu, allows quick access to changing: flash, focus, ISO,
+        white balance, scene mode, color effect, camera resolution, timer.
+UPDATED New icon (by Cosmin Saveanu).
+
+Version 1.19 (2014/09/08)
+
+FIXED   Crashes on startup due to invalid parameters being set.
+FIXED   Location info was lost when switching camera or changing scene mode.
+FIXED   Focus rectangle was shown after switching from video to photo, and
+        wouldn't disappear until a focus occurred.
+FIXED   Accents for Spanish translation.
+ADDED   New option to display crop guides.
+ADDED   Option to rotate preview 180 degrees (useful if using Open Camera with
+        adapters that invert the image).
+UPDATED Material Design icons and colours.
+UPDATED Improved look of toasts to match Android 4.4 look.
+UPDATED Made changing resolution on the popup menu smoother - now possible to
+        quickly go through the resolutions without a pause every time.
+UPDATED Removed some pointless toasts.
+
+Version 1.18 (2014/08/28)
+
+FIXED   Problem on some devices (including Nexus 5) where torch didn't turn off
+        until going to flash off mode.
+FIXED   Problem on some devices (e.g., Galaxy S5) if in video mode, and focus
+        mode is not continuous, and user went to settings and back, then tried
+        to record - video would hang.
+ADDED   Spanish translation (thanks to Mario Sanoguera).
+UPDATED If camera can't be opened, touching the screen now tries to reopen the
+        camera.
+UPDATED Allow installation of app onto external storage.
+
+Version 1.17 (2014/08/24)
+
+FIXED   Crash during auto-stabilise if unable to rotate bitmap (out of memory?)
+        now instead reports being unable to auto-stabilise.
+FIXED   Crash if failed to start camera preview.
+FIXED   Crash when changing flash mode, if camera was lost.
+FIXED   Problem where photos were being taken out of focus on some devices (bug
+        introduced in v1.16).
+FIXED   "Save location" option didn't work if folder didn't exist (this also
+        meant it didn't work when the app is first installed, unless a
+        photo/video was taken first) (bug introduced in v1.16 with the new file
+        chooser dialog).
+ADDED   New options for volume keys: focus, and switch auto-stabilise on/off.
+UPDATED Allow changing flash mode while recording video (so torch can be
+        switched on and off).
+UPDATED Zoom -/+ controls are now disabled by default, to reduce clutter (for
+        those upgrading, you can change this in Settings/On screen GUI).
+UPDATED Use more subtle/natural colors for red/green/blue in UI; improve look
+        of take photo/video icon.
+
+Version 1.16 (2014/08/17)
+
+FIXED   Device freeze when recording video on some Samsung devices (e.g.,
+        Galaxy S2, and some Galaxy S3 variants).
+FIXED   Fail to take photo if in manual focus mode, and picture was taken
+        whilst focusing.
+FIXED   Changing left/right handedness of UI didn't update until app
+        paused/resumed.
+FIXED   Problems with left-handed UI when going to settings and back, icons
+        would shift to incorrect positions.
+FIXED   When geotagging was enabled, this didn't take effect until the app was
+        paused and resumed (or restarted).
+FIXED   If zoomed in, then switch camera or app paused, the camera preview
+        would reset to being unzoomed on some devices (e.g., Nexus 7).
+UPDATED Save folder location is now chosen via a GUI, rather than having to
+        type the path.
+UPDATED If exposure is non-zero, the exposure is displayed on the photo/video
+        toast.
+UPDATED Photo/video toast now displays scene mode if not auto.
+UPDATED Video toast now displays if audio recording is disabled.
+UPDATED Photo/video toast now displays for longer.
+UPDATED Improved behaviour of left-handed UI, to make it more consistent with
+        the behaviour of the right-handed UI.
+UPDATED Minor improvements to alignment of on-screen text.
+UPDATED New icon for switching between photo and video mode.
+UPDATED Virtual buttons now dimmed.
+ADDED   Support for video stabilization.
+ADDED   Option to disable showing the zoom slider control (Settings/
+        On screen GUI.../Show zoom slider control).
+ADDED   Russian translation (thanks to maksnogin).
+
+Version 1.15 (2014/08/02)
+
+FIXED   Crash when exiting settings, if camera wasn't opened (bug introduced in
+        v1.14).
+FIXED   More crashes due to camera drivers that aren't following Android API
+        specs (Parameters.getFocusMode() should always be non-null, but isn't
+        on some devices!)
+FIXED   If video failed due to error (e.g., hitting device max filesize,
+        running out of space, of other errors), Open Camera now stops properly
+        rather than thinking the video is still recording. Last video error is
+        also stored in the about/debug window.
+ADDED   New option to lock orientation to portrait or landscape.
+ADDED   New option Flash while recording video.
+UPDATED Touch to set focus/metering now works while recording video.
+
+Version 1.14 (2014/07/22)
+
+FIXED   Crash when clicking to switch between photo/video modes if camera
+        couldn't be opened.
+FIXED   Problem with face detection not resuming after focusing on mtk6589.
+FIXED   Workaround for aspect ratio bug introduced in Android 4.4.3:
+        http://code.google.com/p/android/issues/detail?id=70830
+        Problem that this caused with aspect ratio with video recording.
+FIXED   Open Camera now available as a choice when camera icon pressed from
+        Gallery app (Open Camera now responds to
+        android.media.action.STILL_IMAGE_CAMERA).
+FIXED   Open Camera now available as a choice when camera icon pressed from
+        Cover Lock Screen (beta) app (Open Camera now responds to
+        android.media.action.STILL_IMAGE_CAMERA_SECURE).
+FIXED   All available video resolutions are now supported.
+ADDED   New "manual" focus mode - focusing happens when you touch the screen,
+        but it doesn't do automatic focusing when taking a photo.
+ADDED   Support for more hardware buttons: camera button to take photo/video;
+        focus button; zoom in/out buttons.
+ADDED   Long press on gallery icon now shows a popup of recent save folders (if
+        more than one is available), allowing you to quickly change between
+        them.
+ADDED   Location data now stored in videos too, if geotagging option is enabled
+        (only for MPEG4 and 3GPP video formats).
+ADDED   Option for volume keys to do nothing (not even changing the device
+        volume).
+ADDED   Option to lock screen when recording video (swipe to unlock).
+ADDED   Option to limit duration of recording video (automatically stops after
+        specified time); also option to restart video a specified number of
+        times.
+UPDATED Significantly improved speed for opening and closing settings (now
+        launched as a Fragment rather than a separate Activity).
+UPDATED Open Camera now remains active rather than being blocked by a "screen
+        lock" (face/PIN unlock still required to go to Gallery or Settings).
+        This behaviour can be switched off by going to Settings/More Camera
+        Controls/Show camera when locked.
+UPDATED Broadcast Camera.ACTION_NEW_PICTURE and com.android.camera.NEW_PICTURE
+        intents for new photos, and Camera.ACTION_NEW_VIDEO for new videos.
+UPDATED WYSIWYG mode is now the default setting for the preview size.
+UPDATED Expanded number of devices which show the "Force 4K UHD video
+        (experimental)" option (remember, 4K isn't officially supported by
+        Android API and this option is experimental - if this option shows, it
+        doesn't necessarily mean it will work on your device).
+UPDATED Video time is now shown with smaller font and off-centre, so as to not
+        obscure the view so much.
+
+Version 1.13 (2014/05/24)
+
+FIXED   Crash when opening settings on devices that didn't support
+        auto-stabilise (bug introduced in v1.10).
+FIXED   Crash introduced in v1.10 to do with cancelling autofocus on some
+        devices.
+ADDED   Options for video bitrate and frame rate. Note that both of these are
+        approximate settings, and whether they can be achieved may depend on
+        your device, and other conditions such as lighting. Also note that
+        setting non-default values for bitrate of frame rate may cause video
+        recording to fail, if the values are not supported.
+UPDATED About window now shows device manufacturer and model, to help with
+        debugging.
+
+Version 1.12 (2014/05/19)
+
+UPDATED Improve support for ISO setting (didn't show up on some devices, e.g.,
+        some Galaxy S5 variants).
+
+Version 1.11 (2014/05/17)
+
+ADDED   New GUI icon to set exposure lock.
+ADDED   New option in settings to set ISO.
+ADDED   Displays photo and video resolution etc, when starting up, switching
+        between photo/video, and switching camera.
+ADDED   About window now displays all camera parameters.
+UPDATED Don't display switch camera icon if device only has 1 camera.
+UPDATED Always reset to continuous focus mode when starting camera in video
+        mode (fixes some problems on some devices).
+
+Version 1.10 (2014/05/07)
+
+FIXED   Preview wouldn't restart after taking photo with continuous focus, on
+        Galaxy Nexus.
+FIXED   Problems with aspect ratio when not using WYSIWYG preview mode and
+        recording video.
+FIXED   Camcorder profile was always being initialised from the back camera,
+        even when recording video with the front camera.
+ADDED   New (experimental!) option to support 4K UHD (3840x2160) video
+        (Settings->Photo and video settings->Force 4K UHD video). Note that 4K
+        video isn't properly supported by Android API, so this option may show
+        even if it isn't supported on your device, and may not work or even
+        crash. I've successfully tested this on a Samsung Galaxy S5 and Note 3.
+ADDED   Option to not display the -/+ zoom control.
+UPDATED All available video resolutions offered by the camera are now supported.
+UPDATED Picture and video resolution preferences display aspect ratio and
+        megapixels of each resolution.
+UPDATED Reorganised preferences into new On screen GUI page.
+UPDATED Don't change camera settings whilst camera is autofocusing (may help
+        problems/crashes on some devices).
+
+Version 1.9 (2014/03/22)
+
+FIXED   Crash on some devices when starting app or switching camera (bug
+        introduced in v1.8).
+
+Version 1.8 (2014/03/18)
+
+FIXED   Crash on startup if Network or GPS location providers not available,
+        and geotagging was enabled.
+FIXED   Crash if specified save folder was an empty string.
+FIXED   Don't ever turn on flash during autofocus when app is launched.
+FIXED   Various other crashes.
+ADDED   Option to not force screen display to maximum brightness.
+ADDED   Option to display horizontal "level" line.
+ADDED   Support for hardware menu button (now opens settings).
+ADDED   Option to display a 4x2 grid (if you previously had a 3x3 "rule of
+        thirds" grid, you'll have to reenable it under the Settings).
+ADDED   Added privacy policy (for location permission/geotagging) to intro
+        window text (needed for Nokia Store).
+ADDED   Uses setRecordingHint, may improve performance of starting video
+        recording.
+ADDED   New About option in Settings, providing debug info.
+UPDATED Don't re-autofocus before taking a photo, if camera recently
+        successfully focused due to user touching the screen.
+UPDATED Display yellow or green dot next to earth icon to indicate location
+        accuracy.
+UPDATED Display earth icon with red dash through it, if geotagging is enabled,
+        but the app doesn't have a location.
+UPDATED Current zoom is now saved when app goes idle, or switching cameras.
+UPDATED Offset zoom slider slightly so as to not interfere with Google Now
+        swipe.
+UPDATED Allow greater range of characters (including unicode) for save location
+        (now allows any character other than those reserved by filesystem).
+
+Version 1.7 (2014/01/29)
+
+FIXED   More fixes for aspect ratio - the preview display should now always
+        have a 1:1 aspect ratio (on some devices this may mean black bars are
+        shown, if there isn't a match between the camera's available preview
+        sizes, and the aspect ratio of the device's display).
+FIXED   Possible crash relating to creating thumbnails.
+FIXED   Autofocus on startup didn't always actually focus.
+FIXED   If camera doesn't support focus areas, but does support metering areas,
+        still set the metering area.
+FIXED   Was sometimes trying to set metering areas when metering areas not
+        supported by device.
+FIXED   If image is deleted after taking the photo, the thumbnail is now
+        properly updated to what is now the most recent photo or video.
+ADDED   New option to set preview aspect ratio to match the picture/video
+        aspect ratio (WYSIWIG).
+UPDATED Save folder can now be an absolute path, allowing possibility to save
+        on external SD cards (though you need to know what the path is, which
+        typically varies depending on device; I am unable to test this, so
+        please let me know if it does or doesn't work).
+UPDATED Zoom -/+ control now matches the zoom slider orientation.
+UPDATED Hide some icons when taking video, as they don't do anything.
+
+Version 1.6 (2014/01/20)
+
+FIXED   Crash when trying to access image or video resolutions in settings, if
+        camera didn't offer these settings.
+FIXED   Exposure compensation wasn't available on devices if min or max
+        exposure compensation level was equal to 0.
+FIXED   Aspect ratio problems with the preview on some devices (if you are
+        still having problems, please let me know what Android device you are
+        using).
+FIXED   Aspect ratio problems with the preview on all devices when switching
+        the camera.
+FIXED   Problem on smaller devices where on-screen text overlapped with take
+        photo button; the text is now aligned to above the button on all
+        devices.
+ADDED   Zoom can now be also controlled via on-screen slider (next to the
+        plus/minus zoom buttons).
+ADDED   Option for volume keys to control the exposure compensation.
+ADDED   Option to display compass direction of camera on-screen (defaults to
+        on, disable it in options if you don't like it).
+ADDED   Option to choose microphone for recording audio (support for external
+        microphones).
+UPDATED Exposure compensation is now set via a new button in the on-screen GUI
+        (the black and white +/- symbol) instead of the settings. Clicking this
+        will bring up a slider and plus/minus buttons to adjust the exposure
+        compensation. To get rid of the slider and buttons, either click the
+        Exposure button again, or click elsewhere on the screen.
+UPDATED Geotagging now stores image compass direction (GPSImgDirection,
+        GPSImgDirectionRef).
+UPDATED Display degree symbol for displayed on-screen angles.
+UPDATED Zoom control is now transparent.
+UPDATED Filter applied to sensor for device angle.
+
+Version 1.5 (2014/01/09)
+
+FIXED   Crash on Android 4.4 when launching for first time, or changing the
+        save folder (issue with creating the save folder, due to Android no
+        longer allowing ANDROID_MEDIA_MOUNTED to be broadcast).
+FIXED   Crash if failed to open camera after switching cameras, then user tried
+        to zoom.
+FIXED   Other potential crashes (NumberFormatException on "es209ra" on startup;
+        RuntimeException on Xperia Go when taking photo; RuntimeException on
+        "maxx_ax5" when taking photo with face detection).
+
+Version 1.4 (2013/12/16)
+
+FIXED   Calculation for focus areas wasn't right for front facing cameras.
+FIXED   Exif data wasn't getting saved if auto-stabilise option was enabled
+        (this also meant that on some cameras/focus modes, the orientation
+        would have been incorrect).
+FIXED   "Toast" pop-up messages looked poor on Android 4.4.
+FIXED   Fixed potential crash if taking picture fails.
+FIXED   Touch to focus with continuous focus shouldn't show red box.
+FIXED   Crash with auto-stabilise for some angles larger than 90 degrees.
+FIXED   Crash when rotating device when viewing "Photo and video settings".
+FIXED   If device was rotated when app was idle, the UI sometimes showed with
+        the incorrect orientation.
+ADDED   Images now tagged with current location (optional, off by default). Note
+        that Open Camera now requires Location permission, for this feature.
+ADDED   Option for face detection.
+ADDED   Touch to select focus area also now sets the metering area (used to
+        determine exposure).
+ADDED   Now displays current time.
+ADDED   Option to display a 3x3 grid ("rule of thirds").
+ADDED   Now displays flashy thumbnail animation when taking a photo (you can
+        disable this in the options under "More camera controls..." if you
+        don't like this sort of thing!)
+UPDATED Gallery button now displays thumbnail of last image/video taken.
+UPDATED Clicking the Gallery button now goes to most recent image/video.
+UPDATED Made it easier to see on-screen text when underlying photo preview is
+        bright, by drawing a background with the text.
+
+Version 1.3 (2013/11/18)
+
+FIXED   Video files may not have shown up properly in other apps, or over USB,
+        until rebooting device.
+FIXED   Make sure filenames for images/videos are unique.
+ADDED   New burst mode option - take a repeated set of photos at once, or with
+        a delay.
+ADDED   Option for video resolution.
+ADDED   Display battery status on screen.
+UPDATED Reorganised settings screen to remove clutter - less commonly used
+        options have been moved to sub-screens; "Record audio?" is moved to
+        "Photo and video settings..."
+UPDATED Only show zoom level (if that option is set) when actually zoomed in.
+
+Version 1.2 (2013/11/09)
+
+FIXED   Crash when launching gallery, if no Gallery app installed on device.
+FIXED   Selecting a focus area shouldn't switch to focus mode auto.
+FIXED   Focus area wasn't getting reset when it should (e.g., changing focus
+        mode or zooming).
+FIXED   Fixed potential crash on auto focus.
+FIXED   Hide GUI options while taking a photo (otherwise problems can be caused
+        by changing options, e.g., changing focus mode).
+FIXED   Message for failing to open camera was too wide for portrait view.
+ADDED   Option for exposure compensation.
+ADDED   Show whether auto focus was successful or not (via red/green rectangle)
+        even if focus area not selected.
+UPDATED Pause after taking photo now defaults to false.
+UPDATED Made "toasts" look nicer.
+UPDATED Added simple instructions to the intro window shown on first time
+        start-up.
+
+Version 1.1 (2013/10/27)
+
+ADDED  Touch to select focus area.
+ADDED  Optional beep on timer countdown.
+ADDED  Option on whether to display the current camera zoom level on screen.
+
+Version 1.0 (2013/10/17)
+
+First release.
+</pre>
+
+<hr>
+<p><a href="privacy_oc.html">Open Camera Privacy Policy.</a></p>
+<p>This website uses icons from third party sources, see <a href="index.html#licence">licences.</a></p>
+<p><a href="http://sourceforge.net/p/opencamera/">Open Camera on Sourceforge.</a></p>
+<hr>
+
+</body>
+</html>
