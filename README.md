@@ -22,6 +22,8 @@ the zoom a little easier to control and mostly gets you using the camera you thi
 There is some initial code for maybe getting the 0.7x lens working, but that's something 
 perhaps for later. It is GPL, like OpenCamera itself.
 
+Currently these patches work only with the Camera2 API, so make sure you set that, or not much will appear to happen.
+
 It is not intended for any other device other than the P6P. I may have screwed up other
 features. I may not ever make any more versions. You use it at your own risk. But hey,
 I can at least use the camera I paid for. DO NOT ASK OpenCamera (or for that matter, me)
