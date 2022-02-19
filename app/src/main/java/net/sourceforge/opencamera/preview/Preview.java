@@ -3997,6 +3997,15 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         }
     }
 
+    public void setZoomFloat(float f) {
+        camera_controller.setZoomFloat(f);
+    }
+
+    public void setHardwareZoom(float f) {
+        Log.d(TAG, "setHardwareZoom:"+f);
+        camera_controller.setHardwareZoom(f);
+    }
+
     public void setFocusDistance(float new_focus_distance, boolean is_target_distance) {
         if( MyDebug.LOG ) {
             Log.d(TAG, "setFocusDistance: " + new_focus_distance);

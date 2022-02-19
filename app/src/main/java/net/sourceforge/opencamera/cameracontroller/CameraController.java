@@ -483,6 +483,8 @@ public abstract class CameraController {
     public abstract void setJpegQuality(int quality);
     public abstract int getZoom();
     public abstract void setZoom(int value);
+    public abstract void setZoomFloat(float f);
+    public abstract void setHardwareZoom(float f);
     public abstract int getExposureCompensation();
     public abstract boolean setExposureCompensation(int new_exposure);
     public abstract void setPreviewFpsRange(int min, int max);

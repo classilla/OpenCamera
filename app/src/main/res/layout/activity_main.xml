@@ -128,6 +128,14 @@
         android:background="@color/seekbar_background"
         />
 
+    <Button
+        android:id="@+id/bz1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="50dip"
+        android:text="1" />
+
+
     <!-- n.b., layout_marginLeft set programmatically in DrawPreview -->
     <SeekBar
         android:id="@+id/focus_seekbar"

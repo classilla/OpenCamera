@@ -948,10 +948,18 @@ public class CameraController1 extends CameraController {
         }
     }
 
+    public void setZoomFloat(float f) {
+        // NYI
+    }
+
     public int getExposureCompensation() {
 		/*Camera.Parameters parameters = this.getParameters();
 		return parameters.getExposureCompensation();*/
         return this.current_exposure_compensation;
+    }
+
+    public void setHardwareZoom(float f) {
+        // do nothing
     }
 
     private float getExposureCompensationStep() {

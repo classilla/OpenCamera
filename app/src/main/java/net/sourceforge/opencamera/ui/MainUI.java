@@ -547,6 +547,21 @@ public class MainUI {
             view.setLayoutParams(layoutParams);
             setViewRotation(view, ui_rotation);
 
+            // This is wrong and I don't care.
+            view = main_activity.findViewById(R.id.bz1);
+            layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
+            layoutParams.addRule(align_parent_left, 0);
+            layoutParams.addRule(align_parent_right, RelativeLayout.TRUE);
+            layoutParams.addRule(align_parent_top, 0);
+            layoutParams.addRule(align_parent_bottom, 0);
+            layoutParams.addRule(ui_independent_above, R.id.take_photo);
+            layoutParams.addRule(ui_independent_below, 0);
+            layoutParams.addRule(ui_independent_left_of, 0);
+            layoutParams.addRule(ui_independent_right_of, 0);
+            setMarginsForSystemUI(layoutParams, 0, (int) (scale*10),  (int)((int)navigation_gap+scale*50),0);
+            view.setLayoutParams(layoutParams);
+            setViewRotation(view, ui_rotation);
+
             view = main_activity.findViewById(R.id.switch_multi_camera);
             layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
             layoutParams.addRule(ui_independent_above, 0);
@@ -643,6 +658,7 @@ public class MainUI {
                 layoutParams.addRule(left_of, 0);
                 layoutParams.addRule(right_of, 0);
                 // margins set below in setFixedRotation()
+
             }
             else {
                 layoutParams.addRule(align_parent_left, 0);

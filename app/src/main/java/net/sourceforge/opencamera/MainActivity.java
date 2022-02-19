@@ -91,6 +91,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -451,6 +452,8 @@ public class MainActivity extends AppCompatActivity {
         zoomControls.setVisibility(View.GONE);
         View zoomSeekbar = findViewById(R.id.zoom_seekbar);
         zoomSeekbar.setVisibility(View.INVISIBLE);
+        Button quickZ = findViewById(R.id.bz1);
+        quickZ.setVisibility(View.INVISIBLE);
 
         // initialise state of on-screen icons
         mainUI.updateOnScreenIcons();
@@ -3920,6 +3923,8 @@ public class MainActivity extends AppCompatActivity {
     private void openGallery() {
         if( MyDebug.LOG )
             Log.d(TAG, "openGallery");
+        Button b = findViewById(R.id.bz1);
+        b.setText("1"); // it gets reset
         //Intent intent = new Intent(Intent.ACTION_VIEW, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         Uri uri = applicationInterface.getStorageUtils().getLastMediaScanned();
         boolean is_raw = uri != null && applicationInterface.getStorageUtils().getLastMediaScannedIsRaw();
@@ -4108,7 +4113,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
 					/*if( true )
 						throw new SecurityException(); // test*/
-                        getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
+                        getContentResolver().takePersistableUriPermission(treeUri, (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -4173,7 +4178,7 @@ public class MainActivity extends AppCompatActivity {
 					/*if( true )
 						throw new SecurityException(); // test*/
                         // Check for the freshest data.
-                        getContentResolver().takePersistableUriPermission(fileUri, takeFlags);
+                        getContentResolver().takePersistableUriPermission(fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION); // ?!
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -4228,7 +4233,7 @@ public class MainActivity extends AppCompatActivity {
 					/*if( true )
 						throw new SecurityException(); // test*/
                         // Check for the freshest data.
-                        getContentResolver().takePersistableUriPermission(fileUri, takeFlags);
+                        getContentResolver().takePersistableUriPermission(fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                         settingsManager.loadSettings(fileUri);
                     }
@@ -4835,6 +4840,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "has_zoom? " + preview.supportsZoom());
             ZoomControls zoomControls = findViewById(R.id.zoom);
             SeekBar zoomSeekBar = findViewById(R.id.zoom_seekbar);
+            Button quickZ = findViewById(R.id.bz1);
 
             if( preview.supportsZoom() ) {
                 if( sharedPreferences.getBoolean(PreferenceKeys.ShowZoomControlsPreferenceKey, false) ) {
@@ -4882,9 +4888,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                quickZ.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String l = quickZ.getText().toString();
+                        if (l.equals("1")) {
+                            quickZ.setText("2");
+                            preview.setZoomFloat(2.0f);
+                        } else if (l.equals("2")) {
+                            quickZ.setText("4");
+                            preview.setZoomFloat(4.28f); // ?!
+                        } else if (l.equals("4")) {
+                            quickZ.setText("8");
+                            preview.setZoomFloat(8.0f);
+                        } else if (l.equals("8")) {
+                       /*     quickZ.setText("0.7");
+                            preview.setZoomFloat(0.7f);
+                        } else if (l.equals("0.7")) { */
+                            quickZ.setText("1");
+                            preview.setZoomFloat(1.0f);
+                        } else {
+                            // IDK.
+                        }
+                    }
+                });
+
                 if( sharedPreferences.getBoolean(PreferenceKeys.ShowZoomSliderControlsPreferenceKey, true) ) {
                     if( !mainUI.inImmersiveMode() ) {
                         zoomSeekBar.setVisibility(View.VISIBLE);
+                        quickZ.setVisibility(View.VISIBLE);
                     }
                 }
                 else {
@@ -4894,6 +4926,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 zoomControls.setVisibility(View.GONE);
                 zoomSeekBar.setVisibility(View.INVISIBLE); // should be INVISIBLE not GONE, as the focus_seekbar is aligned to be left to this; in future we might want this similarly for the exposure panel
+                quickZ.setVisibility(View.INVISIBLE);
             }
             if( MyDebug.LOG )
                 Log.d(TAG, "cameraSetup: time after setting up zoom: " + (System.currentTimeMillis() - debug_time));

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Queue;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.ImageFormat;
@@ -4302,17 +4303,22 @@ public class CameraController2 extends CameraController {
 
     @Override
     public void setZoom(int value) {
-        if( zoom_ratios == null ) {
-            if( MyDebug.LOG )
+        if (zoom_ratios == null) {
+            if (MyDebug.LOG)
                 Log.d(TAG, "zoom not supported");
             return;
         }
-        if( value < 0 || value > zoom_ratios.size() ) {
-            if( MyDebug.LOG )
+        if (value < 0 || value > zoom_ratios.size()) {
+            if (MyDebug.LOG)
                 Log.e(TAG, "invalid zoom value" + value);
             throw new RuntimeException(); // throw as RuntimeException, as this is a programming error
         }
-        float zoom = zoom_ratios.get(value)/100.0f;
+        float zoom = zoom_ratios.get(value) / 100.0f;
+        this.current_zoom_value = value;
+        setZoomFloat(zoom);
+    }
+
+    public void setZoomFloat(float zoom) {
         Rect sensor_rect = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
         int left = sensor_rect.width()/2;
         int right = left;
@@ -4344,7 +4350,6 @@ public class CameraController2 extends CameraController {
         }
         camera_settings.scalar_crop_region = new Rect(left, top, right, bottom);
         camera_settings.setCropRegion(previewBuilder);
-        this.current_zoom_value = value;
         try {
             setRepeatingRequest();
         }
@@ -4356,6 +4361,17 @@ public class CameraController2 extends CameraController {
             }
             e.printStackTrace();
         } 
+    }
+
+    @SuppressLint("NewApi")
+    public void setHardwareZoom(float f) {
+            Log.d(TAG, "setHardwareZoom: "+f);
+            previewBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO, f);
+            try {
+                setRepeatingRequest();
+            } catch(CameraAccessException e) {
+                // NYI
+            }
     }
     
     @Override
@@ -5868,7 +5884,7 @@ public class CameraController2 extends CameraController {
                 int iso = 800;
                 if( set_iso )
                     iso = new_iso;
-                else if( capture_result_has_iso )
+                else if( capture_result_has_iso)
                     iso = capture_result_iso;
                 // see https://sourceforge.net/p/opencamera/tickets/321/ - some devices may have auto ISO that's
                 // outside of the allowed manual iso range!
